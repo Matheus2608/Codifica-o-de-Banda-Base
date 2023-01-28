@@ -61,11 +61,28 @@ vi CamadaFisicaTransmissoraCodificacaoManchester(vi quadro) {
 }
 
 vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
+    int voltagem = 1;
+    bool positiva = true;
+
+    for (int& bit : quadro) {
+        if(bit){
+            if(positiva){
+                bit = voltagem;
+                positiva = false;
+            }
+
+            else {
+                bit = voltagem * -1;
+                positiva = true;
+            }
+        }
+    }
+
     return quadro;
 }
 
 void CamadaFisicaTransmissora (vi quadro) {
-    int tipoDeCodificacao = 1;
+    int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
 
     switch (tipoDeCodificacao) {
@@ -82,11 +99,8 @@ void CamadaFisicaTransmissora (vi quadro) {
             break;
     }
 
-    for(int bit : fluxoBrutoDeBits) {
-        cout << bit << " ";
-    }
-
-    cout << endl;
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
     //MeioDeComunicacao(fluxoBrutoDeBits);
 }
