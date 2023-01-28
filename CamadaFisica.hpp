@@ -16,12 +16,12 @@ void CamadaFisicaTransmissora (vi quadro);
 vi CamadaFisicaTransmissoraCodificacaoBinaria (vi quadro);
 vi CamadaFisicaTransmissoraCodificacaoManchester (vi quadro);
 vi CamadaFisicaTransmissoraCodificacaoBipolar (vi quadro);
-void MeioDeComunicacao (int fluxoBrutoDeBits[]);
-void CamadaFisicaReceptora (int quadro[]);
-int CamadaFisicaReceptoraCodificacaoBinaria (int quadro[]);
-int CamadaFisicaReceptoraCodificacaoManchester (int quadro[]);
-int CamadaFisicaReceptoraCodificacaoBipolar (int quadro[]);
-void CamadaDeAplicacaoReceptora (int quadro[]);
+void MeioDeComunicacao (vi fluxoBrutoDeBits);
+void CamadaFisicaReceptora (vi quadro);
+vi CamadaFisicaReceptoraCodificacaoBinaria (vi quadro);
+vi CamadaFisicaReceptoraCodificacaoManchester (vi quadro);
+vi CamadaFisicaReceptoraCodificacaoBipolar (vi quadro);
+void CamadaDeAplicacaoReceptora (vi quadro);
 void AplicacaoReceptora(string mensagem);
 
 #endif //SIMULADORCAMADAFISICA_CAMADAFISICA_HPP

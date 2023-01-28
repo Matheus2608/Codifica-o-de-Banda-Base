@@ -79,6 +79,71 @@ vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
     return quadro;
 }
 
+void AplicacaoReceptora(string mensagem) {
+    cout << "A mensagem recebida foi: " << mensagem << endl;
+}
+
+void CamadaDeAplicacaoReceptora(vi quadro) {
+    string mensagem = "sla";
+
+    AplicacaoReceptora(mensagem);
+}
+
+vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
+    return quadro;
+}
+
+vi CamadaFisicaReceptoraCodificacaoManchester(vi quadro) {
+    return quadro;
+}
+
+vi CamadaFisicaReceptoraCodificacaoBipolar(vi quadro) {
+    return quadro;
+}
+
+
+void CamadaFisicaReceptora(vi quadro) {
+    int tipoDeCodificacao = 2;
+    vi fluxoBrutoDeBits;
+
+    switch (tipoDeCodificacao) {
+        case 0:
+            fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBinaria(quadro);
+            break;
+        case 1:
+            fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoManchester(quadro);
+            break;
+        case 2:
+            fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBipolar(quadro);
+            break;
+        default:
+            break;
+    }
+
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+
+    CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
+}
+
+/* Este metodo simula a transmissao da informacao no meio de comunicacao,
+* passando de um pontoA ( transmissor ) para um ponto B ( receptor )
+*/
+void MeioDeComunicacao(vi fluxoBrutoDeBits) {
+    vi fluxoBrutoDeBitsPontoA, fluxoBrutoDeBitsPontoB;
+
+    fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
+    int i = 0;
+    while(fluxoBrutoDeBitsPontoB.size() != fluxoBrutoDeBitsPontoA.size()) {
+        fluxoBrutoDeBitsPontoB.pb(fluxoBrutoDeBitsPontoA[i]);
+        i++;
+    }
+
+    for(int bit : fluxoBrutoDeBitsPontoB) cout << bit << " "; cout << endl;
+    CamadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
+
+}
+
 void CamadaFisicaTransmissora (vi quadro) {
     int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
@@ -100,7 +165,7 @@ void CamadaFisicaTransmissora (vi quadro) {
     for(int bit : quadro) cout << bit << " "; cout << endl;
     for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
-    //MeioDeComunicacao(fluxoBrutoDeBits);
+    MeioDeComunicacao(fluxoBrutoDeBits);
 }
 
 
