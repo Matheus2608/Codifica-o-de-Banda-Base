@@ -29,7 +29,7 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
 vi inicializadorDeClock(int tamanhoClock) {
     vi clock;
 
-    // Fill the clock array with the sequence "01"
+    // Prrenchendo o clock com sequencias de "01"
     for (int i = 0; i < tamanhoClock; i++) {
         if (i % 2 == 0)
             clock.pb(0);
@@ -47,8 +47,6 @@ vi CamadaFisicaTransmissoraCodificacaoBinaria(vi quadro) {
 
 vi CamadaFisicaTransmissoraCodificacaoManchester(vi quadro) {
     int tamanhoClock = quadro.size() * 2;
-    // cout << "tamanho quadro " << quadro.size() << endl;
-    // cout << "tamanho clock " << tamanhoClock << endl;
 
     vi clock = inicializadorDeClock(tamanhoClock);
     vi output(tamanhoClock);
@@ -61,11 +59,28 @@ vi CamadaFisicaTransmissoraCodificacaoManchester(vi quadro) {
 }
 
 vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
+    int voltagem = 1;
+    bool positiva = true;
+
+    for (int& bit : quadro) {
+        if(bit){
+            if(positiva){
+                bit = voltagem;
+                positiva = false;
+            }
+
+            else {
+                bit = voltagem * -1;
+                positiva = true;
+            }
+        }
+    }
+
     return quadro;
 }
 
 void CamadaFisicaTransmissora (vi quadro) {
-    int tipoDeCodificacao = 1;
+    int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
 
     switch (tipoDeCodificacao) {
@@ -82,11 +97,8 @@ void CamadaFisicaTransmissora (vi quadro) {
             break;
     }
 
-    for(int bit : fluxoBrutoDeBits) {
-        cout << bit << " ";
-    }
-
-    cout << endl;
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
     //MeioDeComunicacao(fluxoBrutoDeBits);
 }
