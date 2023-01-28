@@ -49,13 +49,13 @@ vi CamadaFisicaTransmissoraCodificacaoManchester(vi quadro) {
     int tamanhoClock = quadro.size() * 2;
 
     vi clock = inicializadorDeClock(tamanhoClock);
-    vi output(tamanhoClock);
+    vi mensagemEncondada(tamanhoClock);
 
     for (int i = 0; i < tamanhoClock; i++) {
         output[i] = quadro[i/2] ^ clock[i];
     }
 
-    return output;
+    return mensagemEncondada;
 }
 
 vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
@@ -94,11 +94,25 @@ vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
 }
 
 vi CamadaFisicaReceptoraCodificacaoManchester(vi quadro) {
-    return quadro;
+    int tamanhoClock = encodedData.size();
+    vi clock = inicializadorDeClock(tamanhoClock);
+    vi mensagemDecodada(tamanhoClock/2);
+
+    for (int i = 0; i < tamanhoClock; i++) {
+        mensagemDecodada[i/2] ^= mensagemDecodada[i] ^ clock[i];
+    }
+
+    return mensagemDecodada;
 }
 
 vi CamadaFisicaReceptoraCodificacaoBipolar(vi quadro) {
-    return quadro;
+    int voltagem = 1;
+
+    for(int& bit : quadro) {
+        if(bit == voltagem or bit == -1 * voltagem) bit = voltagem
+    }
+
+    return bit;
 }
 
 
@@ -120,8 +134,7 @@ void CamadaFisicaReceptora(vi quadro) {
             break;
     }
 
-    for(int bit : quadro) cout << bit << " "; cout << endl;
-    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+    reverse(fluxoBrutoDeBits.begin(), fluxoBrutoDeBits.end());
 
     CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
@@ -167,9 +180,6 @@ void CamadaFisicaTransmissora (vi quadro) {
 
     MeioDeComunicacao(fluxoBrutoDeBits);
 }
-
-
-
 
 
 
