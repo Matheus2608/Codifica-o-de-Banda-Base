@@ -1,5 +1,9 @@
 #include "CamadaFisica.hpp"
 
+int main() {
+    AplicacaoTransmissora();
+}
+
 void AplicacaoTransmissora() {
     string mensagem;
     cout << "Digite uma mensagem: ";
@@ -109,7 +113,7 @@ vi CamadaFisicaReceptoraCodificacaoManchester(vi quadro) {
     vi mensagemDecodada(tamanhoClock/2);
 
     for (int i = 0; i < tamanhoClock; i++) {
-        mensagemDecodada[i/2] ^= mensagemDecodada[i] ^ clock[i];
+        mensagemDecodada[i] ^= mensagemDecodada[i*2] ^ clock[i*2];
     }
 
     return mensagemDecodada;
@@ -166,7 +170,7 @@ void MeioDeComunicacao(vi fluxoBrutoDeBits) {
 }
 
 void CamadaFisicaTransmissora (vi quadro) {
-    int tipoDeCodificacao = 2;
+    int tipoDeCodificacao = 1;
     vi fluxoBrutoDeBits;
 
     switch (tipoDeCodificacao) {
