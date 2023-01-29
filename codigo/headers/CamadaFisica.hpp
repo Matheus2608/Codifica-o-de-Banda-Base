@@ -19,20 +19,20 @@ vi inicializadorDeClock(int);
 /**
  * Inicializa a simulação da transmissão da mensagem
  */
-string AplicacaoTransmissora(string);
+string AplicacaoTransmissora(string, int);
 
 /**
  * Converte a mensagem em um trem de bits
  * @param mensagem Mensagem que o usuario digitou
  */
-string CamadaDeAplicacaoTransmissora (string);
+string CamadaDeAplicacaoTransmissora (string, int);
 
 /**
  * Responsável por delegar para outra função a codificação necessária
  * e transferir o resultado da codificacao para o MeioDeComunicacao
  * @param quadro Trem de bits
  */
-string CamadaFisicaTransmissora (vi);
+string CamadaFisicaTransmissora (vi, int);
 
 
 /**
@@ -48,7 +48,7 @@ vi CamadaFisicaTransmissoraCodificacaoBipolar (vi);
  * Simula a transmissão da mensagem codificada em um meio de transmissão
  * @param fluxoBrutoDeBits Trem de bits codificado
  */
-string MeioDeComunicacao (vi fluxoBrutoDeBits);
+string MeioDeComunicacao (vi fluxoBrutoDeBits, int);
 
 /**
  * Nessa parte, a mensagem esta no receptor, pois já foi transferida no MeioDeComunicacao.
@@ -56,7 +56,7 @@ string MeioDeComunicacao (vi fluxoBrutoDeBits);
  * e transferir o resultado da codificacao para o MeioDeComunicacao
  * @param quadro Trem de bits codificado
  */
-string CamadaFisicaReceptora (vi);
+string CamadaFisicaReceptora (vi, int);
 
 /**
  * Decodificam o trem de bits de acordo com o algoritmo proposto
@@ -70,7 +70,7 @@ vi CamadaFisicaReceptoraCodificacaoBipolar (vi);
  * Converte o trme de bits na mensagem original
  * @param quadro Trem de bits original
  */
-string CamadaDeAplicacaoReceptora (vi);
+string CamadaDeAplicacaoReceptora (vi, int);
 
 /**
  * Exibe a mensagem recebida

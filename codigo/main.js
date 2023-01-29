@@ -1,4 +1,4 @@
-fetch("http://0.0.0.0:18080/5", {
+fetch("http://0.0.0.0:18080/1", {
   method: "POST",
   headers: {
     'Content-Type': 'text/plain'

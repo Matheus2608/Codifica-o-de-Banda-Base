@@ -11,8 +11,8 @@ int main() {
 
     cors.global().origin("*");
 
-    CROW_ROUTE(app, "/<int>").methods("POST"_method)([](const crow::request& req, crow::response& res, int id) {
-        res.write(AplicacaoTransmissora(req.body.data()));
+    CROW_ROUTE(app, "/<int>").methods("POST"_method)([](const crow::request& req, crow::response& res, int tipo) {
+        res.write(AplicacaoTransmissora(req.body.data(), tipo));
         res.end();
     });
 
