@@ -91,11 +91,7 @@ string CamadaFisicaReceptora(vi quadro) {
 // ---------------------------------------------------------- ATENCAO --------------------------------------------------------------------------------------
 // Funções transmissoras
 
-string AplicacaoTransmissora() {
-    string mensagem;
-    cout << "Digite uma mensagem: ";
-    getline(cin, mensagem);
-
+string AplicacaoTransmissora(string mensagem) {
     // Chama a proxima camada
     return CamadaDeAplicacaoTransmissora(mensagem);
 }

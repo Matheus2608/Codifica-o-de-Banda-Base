@@ -19,7 +19,7 @@ vi inicializadorDeClock(int);
 /**
  * Inicializa a simulação da transmissão da mensagem
  */
-string AplicacaoTransmissora();
+string AplicacaoTransmissora(string);
 
 /**
  * Converte a mensagem em um trem de bits
