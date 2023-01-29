@@ -2,9 +2,10 @@
 
 vi inicializadorDeClock(int tamanhoClock) {
     vi clock;
+    if(!tamanhoClock) return clock;
 
     // Prrenchendo o clock com sequencias de "01"
-    for (int i = 0; i < tamanhoClock; i++) {
+    for (int i = 0; i < tamanhoClock * 2; i++) {
         if (i % 2 == 0)
             clock.pb(0);
         else
@@ -12,7 +13,6 @@ vi inicializadorDeClock(int tamanhoClock) {
     }
 
     return clock;
-
 }
 
 void AplicacaoTransmissora() {
@@ -88,11 +88,11 @@ vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
 }
 
 vi CamadaFisicaReceptoraCodificacaoManchester(vi quadro) {
-    int tamanhoClock = quadro.size();
-    vi clock = inicializadorDeClock(tamanhoClock);
-    vi mensagemDecodada(tamanhoClock/2);
+    int tamanhoQuadroOriginal = quadro.size() / 2;
+    vi clock = inicializadorDeClock(tamanhoQuadroOriginal);
+    vi mensagemDecodada(tamanhoQuadroOriginal);
 
-    for (int i = 0; i < tamanhoClock; i++) {
+    for (int i = 0; i < tamanhoQuadroOriginal; i++) {
         mensagemDecodada[i] = quadro[i*2] ^ clock[i*2];
     }
 

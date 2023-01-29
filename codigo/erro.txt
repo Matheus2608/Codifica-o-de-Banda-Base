@@ -1,0 +1,1 @@
+g++ -Wall -std=c++11 -O2 -lm -g -c testa_CamadaFisica.cpp -o testa_CamadaFisica.o

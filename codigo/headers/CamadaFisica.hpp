@@ -10,6 +10,7 @@ using namespace std;
 #define pb push_back
 #define endln "\n"
 
+vi inicializadorDeClock(int tamanhoClock);
 void AplicacaoTransmissora();
 void CamadaDeAplicacaoTransmissora (string mensagem);
 void CamadaFisicaTransmissora (vi quadro);
