@@ -1,11 +1,11 @@
 #include "headers/CamadaFisica.hpp"
 
-vi inicializadorDeClock(int tamanhoClock) {
+vi inicializadorDeClock(int tamanhoQuadro) {
     vi clock;
-    if(!tamanhoClock) return clock;
+    if(!tamanhoQuadro) return clock;
 
     // Prrenchendo o clock com sequencias de "01"
-    for (int i = 0; i < tamanhoClock * 2; i++) {
+    for (int i = 0; i < tamanhoQuadro * 2; i++) {
         if (i % 2 == 0)
             clock.pb(0);
         else
@@ -15,53 +15,7 @@ vi inicializadorDeClock(int tamanhoClock) {
     return clock;
 }
 
-void AplicacaoTransmissora() {
-    string mensagem;
-    cout << "Digite uma mensagem: ";
-    getline(cin, mensagem);
-
-    // Chama a proxima camada
-    CamadaDeAplicacaoTransmissora(mensagem);
-}
-
-vi CamadaFisicaTransmissoraCodificacaoBinaria(vi quadro) {
-    return quadro;
-}
-
-vi CamadaFisicaTransmissoraCodificacaoManchester(vi quadro) {
-    int tamanhoClock = quadro.size() * 2;
-
-    vi clock = inicializadorDeClock(tamanhoClock);
-    vi mensagemEncondada(tamanhoClock);
-
-    for (int i = 0; i < tamanhoClock; i++) {
-        mensagemEncondada[i] = quadro[i/2] ^ clock[i];
-    }
-
-    return mensagemEncondada;
-}
-
-vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
-    int voltagem = 1;
-    bool positiva = true;
-
-    for (int& bit : quadro) {
-        if(bit){
-            if(positiva){
-                bit = voltagem;
-                positiva = false;
-            }
-
-            else {
-                bit = voltagem * -1;
-                positiva = true;
-            }
-        }
-    }
-
-    return quadro;
-}
-
+// Funcões Receptoras
 void CamadaDeAplicacaoReceptora(vi quadro) {
 
     string mensagem = "";
@@ -132,6 +86,58 @@ void CamadaFisicaReceptora(vi quadro) {
     // for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
     CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
+
+// ---------------------------------------------------------- ATENCAO --------------------------------------------------------------------------------------
+// Funções transmissoras
+
+void AplicacaoTransmissora() {
+    string mensagem;
+    cout << "Digite uma mensagem: ";
+    getline(cin, mensagem);
+
+    // Chama a proxima camada
+    CamadaDeAplicacaoTransmissora(mensagem);
+}
+
+vi CamadaFisicaTransmissoraCodificacaoBinaria(vi quadro) {
+    return quadro;
+}
+
+vi CamadaFisicaTransmissoraCodificacaoManchester(vi quadro) {
+    int tamanhoClock = quadro.size() * 2;
+
+    vi clock = inicializadorDeClock(tamanhoClock);
+    vi mensagemEncondada(tamanhoClock);
+
+    for (int i = 0; i < tamanhoClock; i++) {
+        mensagemEncondada[i] = quadro[i/2] ^ clock[i];
+    }
+
+    return mensagemEncondada;
+}
+
+vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
+    int voltagem = 1;
+    bool positiva = true;
+
+    for (int& bit : quadro) {
+        if(bit){
+            if(positiva){
+                bit = voltagem;
+                positiva = false;
+            }
+
+            else {
+                bit = voltagem * -1;
+                positiva = true;
+            }
+        }
+    }
+
+    return quadro;
+}
+
+
 
 /* Este metodo simula a transmissao da informacao no meio de comunicacao,
 * passando de um pontoA ( transmissor ) para um ponto B ( receptor )
