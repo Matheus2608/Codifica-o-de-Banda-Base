@@ -16,8 +16,8 @@ $(TEST): testa_CamadaFisica.o CamadaFisica.o
 CamadaFisica.o: CamadaFisica.cpp headers/CamadaFisica.hpp
 	$(CC) $(CFLAGS) -c CamadaFisica.cpp -o CamadaFisica.o
 
-Simulador.o: Simulador.cpp
-	$(CC) $(CFLAGS) -c Simulador.cpp -o Simulador.o
+Simulador.o: simulador.cpp
+	$(CC) $(CFLAGS) -c simulador.cpp -o Simulador.o -lpthread
 
 testa_CamadaFisica.o: testa_CamadaFisica.cpp headers/catch.hpp headers/CamadaFisica.hpp
 	$(CC) $(CFLAGS) -c testa_CamadaFisica.cpp -o testa_CamadaFisica.o

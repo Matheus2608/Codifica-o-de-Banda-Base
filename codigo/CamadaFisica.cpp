@@ -16,6 +16,10 @@ vi inicializadorDeClock(int tamanhoQuadro) {
 }
 
 // Funcões Receptoras
+void AplicacaoReceptora(string mensagem) {
+    cout << "A mensagem recebida foi: " << mensagem << endl;
+}
+
 void CamadaDeAplicacaoReceptora(vi quadro) {
 
     string mensagem = "";
@@ -31,10 +35,6 @@ void CamadaDeAplicacaoReceptora(vi quadro) {
     }
 
     AplicacaoReceptora(mensagem);
-}
-
-void AplicacaoReceptora(string mensagem) {
-    cout << "A mensagem recebida foi: " << mensagem << endl;
 }
 
 vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
@@ -201,21 +201,3 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
     // Chama a proxima camada
     CamadaFisicaTransmissora(quadro);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
