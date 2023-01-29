@@ -16,11 +16,12 @@ vi inicializadorDeClock(int tamanhoQuadro) {
 }
 
 // Funcões Receptoras
-void AplicacaoReceptora(string mensagem) {
+string AplicacaoReceptora(string mensagem) {
     cout << "A mensagem recebida foi: " << mensagem << endl;
+    return mensagem;
 }
 
-void CamadaDeAplicacaoReceptora(vi quadro) {
+string CamadaDeAplicacaoReceptora(vi quadro) {
 
     string mensagem = "";
 
@@ -34,7 +35,7 @@ void CamadaDeAplicacaoReceptora(vi quadro) {
         mensagem += letra;
     }
 
-    AplicacaoReceptora(mensagem);
+    return AplicacaoReceptora(mensagem);
 }
 
 vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
@@ -63,7 +64,7 @@ vi CamadaFisicaReceptoraCodificacaoBipolar(vi quadro) {
     return quadro;
 }
 
-void CamadaFisicaReceptora(vi quadro) {
+string CamadaFisicaReceptora(vi quadro) {
     int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
 
@@ -84,19 +85,19 @@ void CamadaFisicaReceptora(vi quadro) {
     // for(int bit : quadro) cout << bit << " "; cout << endl;
     // cout << "bits foram desencodados" << endl;
     // for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
-    CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
+    return CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
 
 // ---------------------------------------------------------- ATENCAO --------------------------------------------------------------------------------------
 // Funções transmissoras
 
-void AplicacaoTransmissora() {
+string AplicacaoTransmissora() {
     string mensagem;
     cout << "Digite uma mensagem: ";
     getline(cin, mensagem);
 
     // Chama a proxima camada
-    CamadaDeAplicacaoTransmissora(mensagem);
+    return CamadaDeAplicacaoTransmissora(mensagem);
 }
 
 vi CamadaFisicaTransmissoraCodificacaoBinaria(vi quadro) {
@@ -142,7 +143,7 @@ vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
 /* Este metodo simula a transmissao da informacao no meio de comunicacao,
 * passando de um pontoA ( transmissor ) para um ponto B ( receptor )
 */
-void MeioDeComunicacao(vi fluxoBrutoDeBits) {
+string MeioDeComunicacao(vi fluxoBrutoDeBits) {
     vi fluxoBrutoDeBitsPontoA, fluxoBrutoDeBitsPontoB;
 
     fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
@@ -153,11 +154,11 @@ void MeioDeComunicacao(vi fluxoBrutoDeBits) {
     }
 
     // for(int bit : fluxoBrutoDeBitsPontoB) cout << bit << " "; cout << endl;
-    CamadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
+    return CamadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
 
 }
 
-void CamadaFisicaTransmissora (vi quadro) {
+string CamadaFisicaTransmissora (vi quadro) {
     int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
 
@@ -179,10 +180,10 @@ void CamadaFisicaTransmissora (vi quadro) {
     //cout << "bits foram encodados" << endl;
     //for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
-    MeioDeComunicacao(fluxoBrutoDeBits);
+    return MeioDeComunicacao(fluxoBrutoDeBits);
 }
 
-void CamadaDeAplicacaoTransmissora(string mensagem) {
+string CamadaDeAplicacaoTransmissora(string mensagem) {
     // Converte a mensagem para binario
     string mensagemBinario = "";
     for (char& letra : mensagem) {
@@ -199,5 +200,5 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
 
 
     // Chama a proxima camada
-    CamadaFisicaTransmissora(quadro);
+    return CamadaFisicaTransmissora(quadro);
 }
