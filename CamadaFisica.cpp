@@ -1,35 +1,5 @@
 #include "CamadaFisica.hpp"
 
-int main() {
-    AplicacaoTransmissora();
-}
-
-void AplicacaoTransmissora() {
-    string mensagem;
-    cout << "Digite uma mensagem: ";
-    cin >> mensagem;
-
-    // Chama a proxima camada
-    CamadaDeAplicacaoTransmissora(mensagem);
-}
-
-void CamadaDeAplicacaoTransmissora(string mensagem) {
-    // Converte a mensagem para binario
-    string mensagemBinario = "";
-    for (char& letra : mensagem) {
-        mensagemBinario += bitset<8>(letra).to_string();
-    }
-    // Converte string binario para trem de bits
-    vi quadro(mensagemBinario.length());
-
-    for (int i = 0; i < (int) mensagemBinario.length(); i++) {
-        quadro[i] = mensagemBinario[i] - 48;
-    }
-
-    // Chama a proxima camada
-    CamadaFisicaTransmissora(quadro);
-}
-
 vi inicializadorDeClock(int tamanhoClock) {
     vi clock;
 
@@ -43,6 +13,19 @@ vi inicializadorDeClock(int tamanhoClock) {
 
     return clock;
 
+}
+
+int main() {
+    AplicacaoTransmissora();
+}
+
+void AplicacaoTransmissora() {
+    string mensagem;
+    cout << "Digite uma mensagem: ";
+    cin >> mensagem;
+
+    // Chama a proxima camada
+    CamadaDeAplicacaoTransmissora(mensagem);
 }
 
 vi CamadaFisicaTransmissoraCodificacaoBinaria(vi quadro) {
@@ -83,11 +66,10 @@ vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
     return quadro;
 }
 
-void AplicacaoReceptora(string mensagem) {
-    cout << "A mensagem recebida foi: " << mensagem << endl;
-}
-
 void CamadaDeAplicacaoReceptora(vi quadro) {
+
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+
     string mensagem = "";
 
     for (int i = 0; i < quadro.size(); i += 8) {
@@ -101,6 +83,10 @@ void CamadaDeAplicacaoReceptora(vi quadro) {
     }
 
     AplicacaoReceptora(mensagem);
+}
+
+void AplicacaoReceptora(string mensagem) {
+    cout << "A mensagem recebida foi: " << mensagem << endl;
 }
 
 vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
@@ -128,7 +114,6 @@ vi CamadaFisicaReceptoraCodificacaoBipolar(vi quadro) {
 
     return quadro;
 }
-
 
 void CamadaFisicaReceptora(vi quadro) {
     int tipoDeCodificacao = 1;
@@ -192,6 +177,38 @@ void CamadaFisicaTransmissora (vi quadro) {
 
     MeioDeComunicacao(fluxoBrutoDeBits);
 }
+
+void CamadaDeAplicacaoTransmissora(string mensagem) {
+    // Converte a mensagem para binario
+    string mensagemBinario = "";
+    for (char& letra : mensagem) {
+        mensagemBinario += bitset<8>(letra).to_string();
+    }
+    // Converte string binario para trem de bits
+    vi quadro(mensagemBinario.length());
+
+    for (int i = 0; i < (int) mensagemBinario.length(); i++) {
+        quadro[i] = mensagemBinario[i] - 48;
+    }
+
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+
+
+    // Chama a proxima camada
+    CamadaFisicaTransmissora(quadro);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
