@@ -68,8 +68,6 @@ vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
 
 void CamadaDeAplicacaoReceptora(vi quadro) {
 
-    for(int bit : quadro) cout << bit << " "; cout << endl;
-
     string mensagem = "";
 
     for (int i = 0; i < quadro.size(); i += 8) {
@@ -99,7 +97,7 @@ vi CamadaFisicaReceptoraCodificacaoManchester(vi quadro) {
     vi mensagemDecodada(tamanhoClock/2);
 
     for (int i = 0; i < tamanhoClock; i++) {
-        mensagemDecodada[i] ^= mensagemDecodada[i*2] ^ clock[i*2];
+        mensagemDecodada[i] = quadro[i*2] ^ clock[i*2];
     }
 
     return mensagemDecodada;
@@ -132,7 +130,10 @@ void CamadaFisicaReceptora(vi quadro) {
         default:
             break;
     }
-
+    cout << "bits antes de serem encodados" << endl;
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+    cout << "bits foram desencodados" << endl;
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
     CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
 
@@ -172,8 +173,9 @@ void CamadaFisicaTransmissora (vi quadro) {
             break;
     }
 
-    // for(int bit : quadro) cout << bit << " "; cout << endl;
-    // for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+    for(int bit : quadro) cout << bit << " "; cout << endl;
+    cout << "bits foram encodados" << endl;
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
     MeioDeComunicacao(fluxoBrutoDeBits);
 }
@@ -191,7 +193,7 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
         quadro[i] = mensagemBinario[i] - 48;
     }
 
-    for(int bit : quadro) cout << bit << " "; cout << endl;
+    // for(int bit : quadro) cout << bit << " "; cout << endl;
 
 
     // Chama a proxima camada

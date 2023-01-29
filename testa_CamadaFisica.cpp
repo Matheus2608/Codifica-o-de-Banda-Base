@@ -51,7 +51,7 @@ TEST_CASE( "Converte mensagem com unicodes para binario" ) {
 TEST_CASE( "Funcionamento das funcoes de codificacao" ) {
     vi expected_bin_output = {0,1,1,0,0,0,0,1};
     vi expected_bipolar_output = {0,1,-1,0,0,0,0,1};
-    vi expected_manchester_output = {0,1,0,1,1,0,0,0,1,1,0,0,0,1};
+    vi expected_manchester_output = {0,1,1,0,1,0,0,1,0,1,0,1,0,1,1,0};
 
     vi input{0,1,1,0,0,0,0,1};
 
