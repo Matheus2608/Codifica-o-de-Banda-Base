@@ -22,7 +22,7 @@ int main() {
 void AplicacaoTransmissora() {
     string mensagem;
     cout << "Digite uma mensagem: ";
-    cin >> mensagem;
+    getline(cin, mensagem);
 
     // Chama a proxima camada
     CamadaDeAplicacaoTransmissora(mensagem);
@@ -114,7 +114,7 @@ vi CamadaFisicaReceptoraCodificacaoBipolar(vi quadro) {
 }
 
 void CamadaFisicaReceptora(vi quadro) {
-    int tipoDeCodificacao = 1;
+    int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
 
     switch (tipoDeCodificacao) {
@@ -156,7 +156,7 @@ void MeioDeComunicacao(vi fluxoBrutoDeBits) {
 }
 
 void CamadaFisicaTransmissora (vi quadro) {
-    int tipoDeCodificacao = 1;
+    int tipoDeCodificacao = 2;
     vi fluxoBrutoDeBits;
 
     switch (tipoDeCodificacao) {
