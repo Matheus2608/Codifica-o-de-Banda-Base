@@ -15,10 +15,6 @@ vi inicializadorDeClock(int tamanhoClock) {
 
 }
 
-int main() {
-    AplicacaoTransmissora();
-}
-
 void AplicacaoTransmissora() {
     string mensagem;
     cout << "Digite uma mensagem: ";
@@ -130,10 +126,10 @@ void CamadaFisicaReceptora(vi quadro) {
         default:
             break;
     }
-    cout << "bits antes de serem encodados" << endl;
-    for(int bit : quadro) cout << bit << " "; cout << endl;
-    cout << "bits foram desencodados" << endl;
-    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+    // cout << "bits antes de serem encodados" << endl;
+    // for(int bit : quadro) cout << bit << " "; cout << endl;
+    // cout << "bits foram desencodados" << endl;
+    // for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
     CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
 
@@ -173,9 +169,9 @@ void CamadaFisicaTransmissora (vi quadro) {
             break;
     }
 
-    for(int bit : quadro) cout << bit << " "; cout << endl;
-    cout << "bits foram encodados" << endl;
-    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+    //for(int bit : quadro) cout << bit << " "; cout << endl;
+    //cout << "bits foram encodados" << endl;
+    //for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
     MeioDeComunicacao(fluxoBrutoDeBits);
 }

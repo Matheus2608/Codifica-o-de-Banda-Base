@@ -1,9 +1,29 @@
-all: CamadaFisica.o testa_CamadaFisica.cpp
-	g++ -std=c++11 -Wall  CamadaFisica.o testa_CamadaFisica.cpp -o testa_CamadaFisica
+CC = g++
+CFLAGS = -Wall -std=c++11 -O2 -lm -g
+SOURCES = CamadaFisica.cpp testa_CamadaFisica.cpp
+OBJECTS = CamadaFisica.o testa_CamadaFisica.o
+PROGRAM = CamadaFisica
+TEST = test_CamadaFisica
 
+all: $(PROGRAM) $(TEST)
 
-CamadaFisica.cpp : CamadaFisica.cpp CamadaFisica.hpp
-	g++ -std=c++11 -Wall  -c CamadaFisica.cpp
+$(PROGRAM): CamadaFisica.o
+	$(CC) $(CFLAGS) CamadaFisica.o -o $(PROGRAM)
+
+$(TEST): testa_CamadaFisica.o
+	$(CC) $(CFLAGS) testa_CamadaFisica.o -o $(TEST)
+
+CamadaFisica.o: CamadaFisica.cpp
+	$(CC) $(CFLAGS) -c CamadaFisica.cpp -o CamadaFisica.o
+
+testa_CamadaFisica.o: testa_CamadaFisica.cpp
+	$(CC) $(CFLAGS) -c testa_CamadaFisica.cpp -o testa_CamadaFisica.o
+
+run: CamadaFisica
+	./CamadaFisica
+
+test: CamadaFisica
+	./testa_CamadaFisica
 
 clean:
-	rm -rf *.o *.exe
+	rm -rf $(PROGRAM) $(TEST) $(OBJECTS)
