@@ -1,32 +1,46 @@
 CC = g++
 CFLAGS = -Wall -std=c++11 -O2 -lm -g
-SOURCES = CamadaFisica.cpp simulador.cpp testa_CamadaFisica.cpp
-OBJECTS = CamadaFisica.o Simulador.o testa_CamadaFisica.o
-PROGRAM = CamadaFisica
-TEST = test_CamadaFisica
+PROGRAM = Simulador
 
-all: $(PROGRAM) $(TEST)
+# Camada Enlace
+TEST_ENLACE = enlace/TestaCamadaEnlace
+OBJECT_ENLACE = enlace/CamadaEnlace.o
 
-$(PROGRAM): CamadaFisica.o Simulador.o
-	$(CC) $(CFLAGS) CamadaFisica.o Simulador.o -o $(PROGRAM)
+$(TEST_ENLACE): $(OBJECT_ENLACE)
+	$(CC) $(CFLAGS) enlace/TestaCamadaEnlace.cpp $(OBJECT_ENLACE) -o $(TEST_ENLACE)
 
-$(TEST): testa_CamadaFisica.o CamadaFisica.o
-	$(CC) $(CFLAGS) testa_CamadaFisica.o CamadaFisica.o -o $(TEST)
+$(OBJECT_ENLACE): enlace/CamadaEnlace.cpp
+	$(CC) $(CFLAGS) -c enlace/CamadaEnlace.cpp -o $(OBJECT_ENLACE)
 
-CamadaFisica.o: CamadaFisica.cpp headers/CamadaFisica.hpp
-	$(CC) $(CFLAGS) -c CamadaFisica.cpp -o CamadaFisica.o
+test_enlace: $(TEST_ENLACE)
+	./enlace/TestaCamadaEnlace
 
-Simulador.o: simulador.cpp
-	$(CC) $(CFLAGS) -c simulador.cpp -o Simulador.o
 
-testa_CamadaFisica.o: testa_CamadaFisica.cpp headers/catch.hpp headers/CamadaFisica.hpp
-	$(CC) $(CFLAGS) -c testa_CamadaFisica.cpp -o testa_CamadaFisica.o
+# Camada Fisica
+OBJECT_FISICA = fisica/CamadaEnlace.o
+TEST_FISICA = fisica/TestaCamadaFisica
 
-run: CamadaFisica
-	./CamadaFisica
+$(TEST_FISICA): $(OBJECT_FISICA)
+	$(CC) $(CFLAGS) fisica/TestaCamadaFisica.cpp $(OBJECT_FISICA) -o $(TEST_FISICA)
 
-test: test_CamadaFisica
-	./test_CamadaFisica
+$(OBJECT_FISICA): fisica/CamadaFisica.cpp
+	$(CC) $(CFLAGS) -c fisica/CamadaFisica.cpp -o $(OBJECT_FISICA)
+
+test_fisica: $(TEST_FISICA)
+	./fisica/TestaCamadaFisica
+
+
+# Main
+OBJECTS = $(OBJECT_ENLACE) $(OBJECT_FISICA)
+TESTS = $(TEST_ENLACE) $(TEST_FISICA)
+
+$(PROGRAM): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) Simulador.cpp -o $(PROGRAM)
+
+test: test_enlace test_fisica
+
+run: $(PROGRAM)
+	./$(PROGRAM)
 
 clean:
-	rm -rf $(PROGRAM) $(TEST) $(OBJECTS)
+	rm -rf $(PROGRAM) $(TESTS) $(OBJECTS)
