@@ -1,5 +1,2 @@
-#include "CamadaEnlace.hpp"
+#include "../base-template.hpp"
 
-/*
-    Funções aqui
-*/
