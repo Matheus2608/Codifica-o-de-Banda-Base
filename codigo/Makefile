@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall -std=c++11 -O2 -lm -g
-SOURCES = CamadaFisica.cpp Simulador.cpp testa_CamadaFisica.cpp
+SOURCES = CamadaFisica.cpp simulador.cpp testa_CamadaFisica.cpp
 OBJECTS = CamadaFisica.o Simulador.o testa_CamadaFisica.o
 PROGRAM = CamadaFisica
 TEST = test_CamadaFisica
@@ -16,8 +16,8 @@ $(TEST): testa_CamadaFisica.o CamadaFisica.o
 CamadaFisica.o: CamadaFisica.cpp headers/CamadaFisica.hpp
 	$(CC) $(CFLAGS) -c CamadaFisica.cpp -o CamadaFisica.o
 
-Simulador.o: Simulador.cpp
-	$(CC) $(CFLAGS) -c Simulador.cpp -o Simulador.o
+Simulador.o: simulador.cpp
+	$(CC) $(CFLAGS) -c simulador.cpp -o Simulador.o
 
 testa_CamadaFisica.o: testa_CamadaFisica.cpp headers/catch.hpp headers/CamadaFisica.hpp
 	$(CC) $(CFLAGS) -c testa_CamadaFisica.cpp -o testa_CamadaFisica.o

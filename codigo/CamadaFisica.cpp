@@ -1,5 +1,8 @@
 #include "headers/CamadaFisica.hpp"
 
+// variavel global
+int tipoDeCodificacao;
+
 vi inicializadorDeClock(int tamanhoQuadro) {
     vi clock;
     if(!tamanhoQuadro) return clock;
@@ -64,7 +67,8 @@ vi CamadaFisicaReceptoraCodificacaoBipolar(vi quadro) {
 }
 
 void CamadaFisicaReceptora(vi quadro) {
-    int tipoDeCodificacao = 2;
+
+    cout << "decodificando..." << endl;
     vi fluxoBrutoDeBits;
 
     switch (tipoDeCodificacao) {
@@ -80,10 +84,10 @@ void CamadaFisicaReceptora(vi quadro) {
         default:
             break;
     }
-    // cout << "bits antes de serem encodados" << endl;
-    // for(int bit : quadro) cout << bit << " "; cout << endl;
-    // cout << "bits foram desencodados" << endl;
-    // for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+
+    cout << "trem de bits decodificado:" << endl;
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+
     CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
 
@@ -94,6 +98,19 @@ void AplicacaoTransmissora() {
     string mensagem;
     cout << "Digite uma mensagem: ";
     getline(cin, mensagem);
+
+    cout << "Escolha o tipo de codificação da mensagem:" << endl;
+    cout << "0 - Binária" << endl;
+    cout << "1 - Manchester" << endl;
+    cout << "2 - Bipolar" << endl;
+
+
+    cin >> tipoDeCodificacao;
+
+    while(!(tipoDeCodificacao == 0 or tipoDeCodificacao == 1 or tipoDeCodificacao == 2)){
+        cout << "Ensira o tipo de codificação suportada por favor!" << endl;
+        cin >> tipoDeCodificacao;
+    }
 
     // Chama a proxima camada
     CamadaDeAplicacaoTransmissora(mensagem);
@@ -143,6 +160,9 @@ vi CamadaFisicaTransmissoraCodificacaoBipolar(vi quadro) {
 * passando de um pontoA ( transmissor ) para um ponto B ( receptor )
 */
 void MeioDeComunicacao(vi fluxoBrutoDeBits) {
+
+    cout << "transmitindo no meio de comunicação" << endl;
+
     vi fluxoBrutoDeBitsPontoA, fluxoBrutoDeBitsPontoB;
 
     fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
@@ -158,26 +178,29 @@ void MeioDeComunicacao(vi fluxoBrutoDeBits) {
 }
 
 void CamadaFisicaTransmissora (vi quadro) {
-    int tipoDeCodificacao = 2;
+
     vi fluxoBrutoDeBits;
 
+    cout << "Resultado da codificação ";
     switch (tipoDeCodificacao) {
         case 0:
+            cout << "binária" << endl;
             fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
             break;
         case 1:
+            cout << "manchester" << endl;
             fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
             break;
         case 2:
+            cout << "bipolar" << endl;
             fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
             break;
         default:
             break;
     }
 
-    //for(int bit : quadro) cout << bit << " "; cout << endl;
-    //cout << "bits foram encodados" << endl;
-    //for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
+
+    for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
     MeioDeComunicacao(fluxoBrutoDeBits);
 }
@@ -195,8 +218,8 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
         quadro[i] = mensagemBinario[i] - 48;
     }
 
-    // for(int bit : quadro) cout << bit << " "; cout << endl;
-
+    cout << "Convertendo mensagem para trem de bits..." << endl;
+    for(int bit : quadro) cout << bit << " "; cout << endl;
 
     // Chama a proxima camada
     CamadaFisicaTransmissora(quadro);

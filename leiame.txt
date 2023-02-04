@@ -1,2 +1,0 @@
-com o g++ e o make instalado
-digite "make" neste diretório
