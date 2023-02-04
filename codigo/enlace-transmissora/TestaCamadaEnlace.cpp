@@ -1,7 +1,6 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "../catch.hpp"
-#include "../base-template.hpp"
-//#include "CamadaEnlace.cpp"
+#include "CamadaEnlace.cpp"
 
 vi TestaCamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro, int tamMaxQuadro) {
     cout << "----------------------------------------------------------------" << endl;
