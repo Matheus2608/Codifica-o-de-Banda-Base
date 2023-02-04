@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include "headers/catch.hpp"
-#include "headers/CamadaFisica.hpp"
+#include "../catch.hpp"
+#include "CamadaFisica.hpp"
 
 string transformVecInString(vi vec){
 
@@ -52,7 +52,7 @@ string TestCamadaDeAplicacaoReceptora(vi quadro) {
 
 
 TEST_CASE( "Converte mensagem para binario" ) {
-    string input = "hello world", expected_output = "0110100001100101011011000110110001101111001000000111011101101111011100100110110001100100";;
+    string input = "hello world", expected_output = "0110100001100101011011000110110001101111001000000111011101101111011100100110110001100100";
     REQUIRE(TestCamadaDeAplicacaoTransmissora(input) == expected_output);
 
     input = "abc", expected_output = "011000010110001001100011";
