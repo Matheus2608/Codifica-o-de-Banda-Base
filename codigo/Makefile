@@ -12,7 +12,7 @@ $(TEST_ENLACE): $(OBJECT_ENLACE)
 $(OBJECT_ENLACE): enlace/CamadaEnlace.cpp
 	$(CC) $(CFLAGS) -c enlace/CamadaEnlace.cpp -o $(OBJECT_ENLACE)
 
-test_enlace: $(TEST_ENLACE)
+test-enlace: $(TEST_ENLACE)
 	./enlace/TestaCamadaEnlace
 
 
@@ -26,7 +26,7 @@ $(TEST_FISICA): $(OBJECT_FISICA)
 $(OBJECT_FISICA): fisica/CamadaFisica.cpp
 	$(CC) $(CFLAGS) -c fisica/CamadaFisica.cpp -o $(OBJECT_FISICA)
 
-test_fisica: $(TEST_FISICA)
+test-fisica: $(TEST_FISICA)
 	./fisica/TestaCamadaFisica
 
 
@@ -37,7 +37,7 @@ TESTS = $(TEST_ENLACE) $(TEST_FISICA)
 $(PROGRAM): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) Simulador.cpp -o $(PROGRAM)
 
-test: test_enlace test_fisica
+test: test-enlace test-fisica
 
 run: $(PROGRAM)
 	./$(PROGRAM)
