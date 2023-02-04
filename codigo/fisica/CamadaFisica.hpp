@@ -1,14 +1,6 @@
 #ifndef SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
 #define SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
-#include <bitset>
-#include <string>
-#include <iostream>
-#include <bits/stdc++.h>
-using namespace std;
-
-#define vi vector<int>
-#define pb push_back
-#define endln "\n"
+#include "../aplicacao/aplicacao.cpp"
 
 /**
  * Inicializa o clock necessário para a codificação manchester
