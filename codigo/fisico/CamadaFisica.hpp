@@ -1,31 +1,12 @@
 #ifndef SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
 #define SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
-#include <bitset>
-#include <string>
-#include <iostream>
-#include <bits/stdc++.h>
-using namespace std;
 
-#define vi vector<int>
-#define pb push_back
-#define endln "\n"
 
 /**
  * Inicializa o clock necessário para a codificação manchester
  * @param tamanhoClock Necessario para saber o tamanho do clock
  */
 vi inicializadorDeClock(int);
-
-/**
- * Inicializa a simulação da transmissão da mensagem
- */
-void AplicacaoTransmissora();
-
-/**
- * Converte a mensagem em um trem de bits
- * @param mensagem Mensagem que o usuario digitou
- */
-void CamadaDeAplicacaoTransmissora (string);
 
 /**
  * Responsável por delegar para outra função a codificação necessária
@@ -65,17 +46,5 @@ void CamadaFisicaReceptora (vi);
 vi CamadaFisicaReceptoraCodificacaoBinaria (vi);
 vi CamadaFisicaReceptoraCodificacaoManchester (vi);
 vi CamadaFisicaReceptoraCodificacaoBipolar (vi);
-
-/**
- * Converte o trme de bits na mensagem original
- * @param quadro Trem de bits original
- */
-void CamadaDeAplicacaoReceptora (vi);
-
-/**
- * Exibe a mensagem recebida
- * @param mensagem Mensagem que foi recebida
- */
-void AplicacaoReceptora(string);
 
 #endif //SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
