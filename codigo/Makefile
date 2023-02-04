@@ -2,6 +2,19 @@ CC = g++
 CFLAGS = -Wall -std=c++11 -O2 -lm -g
 PROGRAM = Simulador
 
+# Camada Aplicacao Transmissora
+OBJECT_APLICACAO_T = aplicacao-transmissora/Aplicacao.o
+
+$(OBJECT_APLICACAO_T):
+	$(CC) $(CFLAGS) -c aplicacao-transmissora/Aplicacao.cpp  -o $(OBJECT_APLICACAO_T)
+
+# Camada Aplicacao Receptora
+OBJECT_APLICACAO_R = aplicacao-receptora/Aplicacao.o
+
+$(OBJECT_APLICACAO_R):
+	$(CC) $(CFLAGS) -c aplicacao-receptora/Aplicacao.cpp  -o $(OBJECT_APLICACAO_R)
+
+
 # Camada Enlace
 TEST_ENLACE = enlace/TestaCamadaEnlace
 OBJECT_ENLACE = enlace/CamadaEnlace.o
@@ -31,7 +44,7 @@ test-fisica: $(TEST_FISICA)
 
 
 # Main
-OBJECTS = $(OBJECT_ENLACE) $(OBJECT_FISICA)
+OBJECTS = $(OBJECT_ENLACE) $(OBJECT_FISICA) $(OBJECT_APLICACAO_T) $(OBJECT_APLICACAO_R)
 TESTS = $(TEST_ENLACE) $(TEST_FISICA)
 
 $(PROGRAM): $(OBJECTS)
