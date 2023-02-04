@@ -1,4 +1,5 @@
 #include "CamadaFisica.hpp"
+#include "../aplicacao/aplicacao.cpp"
 
 // variavel global
 int tipoDeCodificacao;

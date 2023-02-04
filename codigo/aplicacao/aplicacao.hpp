@@ -1,5 +1,3 @@
-#ifndef SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
-#define SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
 #include <bitset>
 #include <iostream>
 #include <string>
