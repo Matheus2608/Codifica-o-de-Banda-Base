@@ -1,8 +1,6 @@
 #include "CamadaFisica.hpp"
 #include "../aplicacao-receptora/Aplicacao.hpp"
-
-// variavel global
-int tipoDeCodificacao;
+#include "../constantes.cpp"
 
 vi inicializadorDeClock(int tamanhoQuadro) {
     vi clock;
@@ -50,7 +48,7 @@ void CamadaFisicaReceptora(vi quadro) {
     cout << "decodificando..." << endl;
     vi fluxoBrutoDeBits;
 
-    switch (tipoDeCodificacao) {
+    switch (TIPO_DE_CODIFICACAO) {
         case 0:
             fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBinaria(quadro);
             break;
@@ -137,16 +135,8 @@ void MeioDeComunicacao(vi fluxoBrutoDeBits) {
 void CamadaFisicaTransmissora (vi quadro) {
     vi fluxoBrutoDeBits;
 
-    cout << "Escolha o tipo de codificação\n0: Binaria\n1:Manchester\n2:Bipolar" << endl;
-    cin >> tipoDeCodificacao;
-    while (tipoDeCodificacao != 0 && tipoDeCodificacao != 1 && tipoDeCodificacao != 2) {
-        cout << "Número inválido, escolha novamente:";
-        cin >> tipoDeCodificacao;
-    }
-    
-
     cout << "Resultado da codificação ";
-    switch (tipoDeCodificacao) {
+    switch (TIPO_DE_CODIFICACAO) {
         case 0:
             cout << "binária" << endl;
             fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
