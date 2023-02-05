@@ -132,6 +132,67 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi quadro){
     return quadro;
 }
 
+vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming (vi quadro) {
+    int tamanhoDoQuadro = quadro.size();
+    int quantidadeDeBitsDeRedundancia = 0;
+
+    // Inserindo um bit 0 no começo, pois a primeira posição do bit de redundância é 1 (2^0)
+    quadro.insert(quadro.begin(), 0);
+
+    // Caculando a quantidade de bits de redundânciaa
+    while(pow (2,quantidadeDeBitsDeRedundancia) < tamanhoDoQuadro + quantidadeDeBitsDeRedundancia + 1){
+        quantidadeDeBitsDeRedundancia++;
+    }
+
+    // Criando o vetor do código de Hamming
+    vi codigoDeHamming(tamanhoDoQuadro + quantidadeDeBitsDeRedundancia + 1);
+    int j = 0,k = 1;
+
+    // Localizando a posição dos bits de redundância (Inserindo o valor de -1)
+    // Inserindo o valor do quadro nos outros bits
+    for(int i = 1; i <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia; i++){
+        if( i == pow( 2, j )){
+            codigoDeHamming[i] = -1;
+            j++;
+        }
+        else{
+            codigoDeHamming[i] = quadro[k];
+            k++;
+        }
+    }
+
+    k = 0;
+    int paridade,x, min, max = 0;
+    // Calculando os bits de redundância
+    for (int i = 1; i <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia; i = pow (2, k)){
+        k++;
+        paridade = 0;
+        j = i;
+        x = i;
+        min = 1;
+        max = i;
+        while ( j <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia){
+            for (x = j; max >= min && x <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia; min++, x++){
+                if (codigoDeHamming[x] == 1)
+                    paridade = paridade + 1;;
+            }
+            j = x + i;
+            min = 1;
+        }
+
+        // Inserindo o valor do bit de redundância
+        if (paridade % 2 == 0){
+            codigoDeHamming[i] = 0;
+        }
+        else{
+            codigoDeHamming[i] = 1;
+        }
+    }
+    // Removendo o bit 0 do começo
+    codigoDeHamming.erase(codigoDeHamming.begin());
+    return codigoDeHamming;
+}
+
 vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
     vi quadroControleErro;
     switch (TIPO_DE_VERIFICACAO_DE_ERROS) {
@@ -144,7 +205,7 @@ vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
         break;
 
     case 2:
-        //quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
+        quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
         break;
     }
     return quadroControleErro;
