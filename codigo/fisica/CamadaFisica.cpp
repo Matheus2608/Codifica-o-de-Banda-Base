@@ -1,21 +1,7 @@
 #include "CamadaFisica.hpp"
 #include "../enlace-receptora/CamadaEnlace.hpp"
 #include "../constantes.cpp"
-
-vi inicializadorDeClock(int tamanhoQuadro) {
-    vi clock;
-    if(!tamanhoQuadro) return clock;
-
-    // Prrenchendo o clock com sequencias de "01"
-    for (int i = 0; i < tamanhoQuadro * 2; i++) {
-        if (i % 2 == 0)
-            clock.pb(0);
-        else
-            clock.pb(1);
-    }
-
-    return clock;
-}
+#include "../utils/utils.hpp"
 
 vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
     return quadro;

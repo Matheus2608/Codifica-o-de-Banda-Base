@@ -1,18 +1,8 @@
 #include "CamadaEnlace.hpp"
 #include "../aplicacao-receptora/Aplicacao.hpp"
 #include "../constantes.cpp"
+#include "../utils/utils.hpp"
 
-bool are_vectors_equal(const std::vector<int>& v1, const std::vector<int>& v2) {
-    if (v1.size() != v2.size()) {
-        return false;
-    }
-    for (std::size_t i = 0; i < v1.size(); ++i) {
-        if (v1[i] != v2[i]) {
-            return false;
-        }
-    }
-    return true;
-}
 
 vi CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vi quadro) {
     bool cabecalho = true;
