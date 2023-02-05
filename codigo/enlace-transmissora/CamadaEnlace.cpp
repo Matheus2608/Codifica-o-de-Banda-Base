@@ -97,7 +97,7 @@ void CamadaEnlaceDadosTransmissora(vi quadro) {
 }
 
 vi CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(vi quadro){
-    int contador1 = count(quadro.begin(), quadro.end(), 1);]
+    int contador1 = count(quadro.begin(), quadro.end(), 1);
     if (contador1 % 2 == 0) {
         quadro.push_back(0);
     } else {
@@ -133,17 +133,18 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi quadro){
 }
 
 vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
-    switch (TIPO_DE_CONTROLE_DE_ERRO) {
+    vi quadroControleErro;
+    switch (TIPO_DE_VERIFICACAO_DE_ERROS) {
     case 0:
-        vi quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(quadro);
+        quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(quadro);
         break;
 
     case 1:
-        vi quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCRC(quadro);
+        quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCRC(quadro);
         break;
 
     case 2:
-        vi quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
+        //quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
         break;
     }
     return quadroControleErro;
