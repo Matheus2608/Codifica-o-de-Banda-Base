@@ -95,3 +95,56 @@ void CamadaEnlaceDadosTransmissora(vi quadro) {
 
     CamadaFisicaTransmissora(pacoteEnquadrado);
 }
+
+vi CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(vi quadro){
+    int contador1 = count(quadro.begin(), quadro.end(), 1);]
+    if (contador1 % 2 == 0) {
+        quadro.push_back(0);
+    } else {
+        quadro.push_back(1);
+    }
+    return quadro;
+}
+
+vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi quadro){
+    vi polinomioGerador{1,1,0,1};
+    vi resto = quadro;
+    vi resultado;
+
+    for (int i = 0; i < polinomioGerador.size() - 1; i++){
+        resto.pb(0);
+    }
+    while (polinomioGerador.size() <= resto.size() and resto.size() > 0){
+        if (resto[0] == 1){
+            resto.erase(resto.begin());
+            for (int i = 0; i < polinomioGerador.size(); i++){
+                resto[i] = resto[i] ^ polinomioGerador[i+1];
+            }
+            resultado.pb(1);
+        } else {
+            resto.erase(resto.begin());
+            resultado.pb(0);
+        }
+    }
+    for (int i = 0; i < resto.size(); i++){
+        quadro.pb(resto[i]);
+    }
+    return quadro;
+}
+
+vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
+    switch (TIPO_DE_CONTROLE_DE_ERRO) {
+    case 0:
+        vi quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(quadro);
+        break;
+
+    case 1:
+        vi quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCRC(quadro);
+        break;
+
+    case 2:
+        vi quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
+        break;
+    }
+    return quadroControleErro;
+}

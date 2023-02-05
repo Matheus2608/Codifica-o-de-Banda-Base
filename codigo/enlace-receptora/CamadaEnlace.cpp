@@ -95,6 +95,9 @@ void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
     vi resto = quadro;
     vi resultado;
 
+    for (int i = 0; i < polinomioGerador.size() - 1; i++){
+        resto.pb(0);
+    }
     while (polinomioGerador.size() <= resto.size() and resto.size() > 0){
         if (resto[0] == 1){
             resto.erase(resto.begin());
