@@ -64,7 +64,7 @@ TESTS = $(TEST_ENLACE-R) $(TEST_ENLACE-T) $(TEST_FISICA)
 $(PROGRAM): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) Simulador.cpp -o $(PROGRAM)
 
-test: test-enlace test-fisica
+test: test-enlace-t test-enlace-r test-fisica
 
 run: $(PROGRAM)
 	@echo "\n------------------------------------------------------------------------------------------------\n"

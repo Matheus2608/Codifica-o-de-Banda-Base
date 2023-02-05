@@ -2,8 +2,6 @@
 #define SIMULADORCAMADAENLACE_CAMADAENLACE_HPP
 #include "../base-template.hpp"
 
-/*
-    Definições aqui
-*/
+vi CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vi quadro);
 
 #endif //SIMULADORCAMADAENLACE_CAMADAENLACE_HPP

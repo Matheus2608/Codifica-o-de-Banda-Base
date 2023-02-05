@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "../catch.hpp"
-#include "CamadaEnlace.cpp"
+#include "CamadaEnlace.hpp"
 
 TEST_CASE( " Testa CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres com todos quadros completos") {
     vi input = {0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1};
