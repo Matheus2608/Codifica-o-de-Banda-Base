@@ -1,5 +1,7 @@
 #include "../base-template.hpp"
 #include "../constantes.cpp"
+#include "../fisica/CamadaFisica.hpp"
+
 
 bool are_vectors_equal(const std::vector<int>& v1, const std::vector<int>& v2) {
     if (v1.size() != v2.size()) {
@@ -72,4 +74,24 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     }
 
     return resultadoEnquadramento;
+}
+
+void CamadaEnlaceDadosTransmissora(vi quadro) {
+    cout << "Enquadrado pacote ..." << endl;
+    vi pacoteEnquadrado;
+
+    switch (TIPO_DE_ENQUADRAMENTO) {
+    case 0:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
+        break;
+    
+    case 1:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
+        break;
+    }
+
+    cout << "Resultado do enquadramento:" << endl;
+    for(int bit : pacoteEnquadrado) cout << bit << " "; cout << endl;
+
+    CamadaFisicaTransmissora(pacoteEnquadrado);
 }

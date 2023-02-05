@@ -1,5 +1,5 @@
 #include "Aplicacao.hpp"
-#include "../fisica/CamadaFisica.hpp"
+#include "../enlace-transmissora/CamadaEnlace.hpp"
 
 void AplicacaoTransmissora() {
     string mensagem;
@@ -27,5 +27,5 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
     for(int bit : quadro) cout << bit << " "; cout << endl;
 
     // Chama a proxima camada
-    CamadaFisicaTransmissora(quadro);
+    CamadaEnlaceDadosTransmissora(quadro);
 }
