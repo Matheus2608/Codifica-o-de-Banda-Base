@@ -22,8 +22,8 @@ vi TestaCamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro
             resultadoEnquadramento.pb(tamMaxEmByte[j]);
         }
 
-        for(int k = 0; k < tamCargaUtil * 8; k++) {
-            resultadoEnquadramento.pb(quadro[i*8+k]);
+        for(int k = i*8; k < i*8 + (tamCargaUtil * 8); k++) {
+            resultadoEnquadramento.pb(quadro[k]);
         }
     }
 
@@ -47,7 +47,7 @@ vi TestaCamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro
 
 vi TestaCamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro, int tamMaxQuadro) {
 
-    cout << "-------------------------jsabdasdkjabsdjkas--------------------------------------------------------" << endl;
+    cout << "--------------------------------------------------------------------------------" << endl;
     vi ByteDeFlag{0,0,0,0,1,1,1,1}, ByteEsc{1,1,1,1,0,0,0,0}, resultadoEnquadramento;
 
     int numBytes = quadro.size() / 8;
@@ -61,8 +61,8 @@ vi TestaCamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro, int
             resultadoEnquadramento.pb(ByteDeFlag[j]);
         }
 
-        for(int k = 0; k < tamMaxQuadro * 8; k++) {
-            resultadoEnquadramento.pb(quadro[i*8+k]);
+        for(int k = i*8; k < i*8 + (tamMaxQuadro * 8); k++) {
+            resultadoEnquadramento.pb(quadro[k]);
         }
 
         for(int j = 0; j < 8; j++){
