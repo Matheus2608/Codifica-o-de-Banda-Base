@@ -2,16 +2,16 @@
 
 int tamMaxQuadro;
 
-vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
-    cout << "Escreva o tamanho máximo de um quadro: (2-255)" << endl;
-    cin >> tamMaxQuadro;
+vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro, int tamMaxQuadro) {
+    // cout << "Escreva o tamanho máximo de um quadro: (2-255)" << endl;
+    // cin >> tamMaxQuadro;
 
-    while (tamMaxQuadro < 2 or tamMaxQuadro > 255)
-    {
-        cout << "Número invalido! Digite novamente:" << endl;
-        cin >> tamMaxQuadro;
-    }
-    
+    // while (tamMaxQuadro < 2 or tamMaxQuadro > 255)
+    // {
+    //     cout << "Número invalido! Digite novamente:" << endl;
+    //     cin >> tamMaxQuadro;
+    // }
+
     bitset<8> tamMaxEmByte(tamMaxQuadro);
     int tamCargaUtil = tamMaxQuadro - 1;
 
@@ -32,7 +32,7 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
 
     int numBytesFaltantes = numBytes % tamCargaUtil;
     if(numBytesFaltantes) {
-        
+
         bitset<8> numBytesFaltantesEmByte(numBytesFaltantes+1);
 
         for(int i = 7; i >= 0; i--){
@@ -41,6 +41,30 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
 
         for(int j = numQuadrosPerfeitos * tamCargaUtil * 8; j < quadro.size(); j++){
             resultadoEnquadramento.pb(quadro[j]);
+        }
+    }
+
+    return resultadoEnquadramento;
+}
+
+vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro, int tamMaxQuadro) {
+    vi ByteDeFlag{0,0,0,0,1,1,1,1}, ByteEsc{1,1,1,1,0,0,0,0}, resultadoEnquadramento;
+
+    int tamCargaUtil = tamMaxQuadro - 1;
+    int numBytes = quadro.size() / 8;
+    int numQuadrosPerfeitos = numBytes / tamCargaUtil;
+
+    for(int i = 0; i < numQuadrosPerfeitos; i++) {
+        for(int j = 0; j < 8; j++){
+            resultadoEnquadramento.pb(ByteDeFlag[j]);
+        }
+
+        for(int k = 0; k < tamCargaUtil * 8; k++) {
+            resultadoEnquadramento.pb(quadro[i*8+k]);
+        }
+
+        for(int j = 0; j < 8; j++){
+            resultadoEnquadramento.pb(ByteDeFlag[j]);
         }
     }
 
