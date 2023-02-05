@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall -std=c++11 -O2 -lm -g
-PROGRAM = Simulador
+PROGRAM = Simulador.out
 
 # Camada Aplicacao Transmissora
 OBJECT_APLICACAO_T = aplicacao-transmissora/Aplicacao.o
@@ -30,7 +30,7 @@ test-enlace-t: $(TEST_ENLACE-T)
 
 # Camada Enlace Receptora 
 ENLACE-R-PATH = enlace-receptora
-TEST_ENLACE-R = $(ENLACE-R-PATH)/TestaCamadaEnlace
+TEST_ENLACE-R = $(ENLACE-R-PATH)/TestaCamadaEnlace.out
 OBJECT_ENLACE-R = $(ENLACE-R-PATH)/CamadaEnlace.o
 
 $(TEST_ENLACE-R): $(OBJECT_ENLACE-R)
@@ -45,7 +45,7 @@ test-enlace-r: $(TEST_ENLACE-R)
 
 # Camada Fisica
 OBJECT_FISICA = fisica/CamadaEnlace.o
-TEST_FISICA = fisica/TestaCamadaFisica
+TEST_FISICA = fisica/TestaCamadaFisica.out
 
 $(TEST_FISICA): $(OBJECT_FISICA)
 	$(CC) $(CFLAGS) fisica/TestaCamadaFisica.cpp $(OBJECT_FISICA) -o $(TEST_FISICA)
@@ -54,7 +54,7 @@ $(OBJECT_FISICA): fisica/CamadaFisica.cpp
 	$(CC) $(CFLAGS) -c fisica/CamadaFisica.cpp -o $(OBJECT_FISICA)
 
 test-fisica: $(TEST_FISICA)
-	./fisica/TestaCamadaFisica
+	./fisica/TestaCamadaFisica.out
 
 
 # Main
@@ -67,7 +67,9 @@ $(PROGRAM): $(OBJECTS)
 test: test-enlace test-fisica
 
 run: $(PROGRAM)
-	./$(PROGRAM)
+	@echo "\n------------------------------------------------------------------------------------------------\n"
+	@echo "Para alterar as opções padrões modifique o arquivo constantes.cpp, escreva make clean e make run novamente\n"
+	@./$(PROGRAM)
 
 clean:
 	rm -rf $(PROGRAM) $(TESTS) $(OBJECTS)
