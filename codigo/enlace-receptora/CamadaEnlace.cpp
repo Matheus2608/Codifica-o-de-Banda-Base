@@ -118,6 +118,48 @@ void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
     }
 }
 
+void CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
+    int tamanhoDoQuadro = quadro.size();
+
+    // Inserindo um bit 0 no começo, pois a primeira posição do bit de redundância é 1 (2^0)
+    quadro.insert(quadro.begin(), 0);
+
+    int k = 0;
+    int erro = 0;
+    int paridade,x,j, min, max = 0;
+    int localizarErro = 0;
+    // Calculando os bits de redundância
+    for (int i = 1; i <= tamanhoDoQuadro; i = pow (2, k)){
+        k++;
+        paridade = 0;
+        j = i;
+        x = i;
+        min = 1;
+        max = i;
+        while ( j <= tamanhoDoQuadro){
+            for (x = j; max >= min && x <= tamanhoDoQuadro; min++, x++){
+                if (quadro[x] == 1)
+                    paridade = paridade + 1;;
+            }
+            j = x + i;
+            min = 1;
+        }
+
+        // Verificando erro
+        if (paridade % 2 != 0){
+            erro = 1;
+            localizarErro += i;
+            cout << "Erro detectado" << endl;
+        }
+    }
+    if (erro == 0){
+        cout << "Nenhum erro detectado" << endl;
+    }
+
+    // Removendo o bit 0 do começo
+    quadro.erase(quadro.begin());
+}
+
 void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
     switch(TIPO_DE_VERIFICACAO_DE_ERROS) {
         case 0:
