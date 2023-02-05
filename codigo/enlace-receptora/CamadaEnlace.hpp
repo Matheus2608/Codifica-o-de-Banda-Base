@@ -5,7 +5,7 @@
 vi CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vi quadro);
 vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi);
 void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro);
-void CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro);
-void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro);
-void CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro);
+int CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro);
+int CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro);
+int CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro);
 #endif //SIMULADORCAMADAENLACE_CAMADAENLACE_HPP

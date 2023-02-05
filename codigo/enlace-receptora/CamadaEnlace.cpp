@@ -79,7 +79,7 @@ vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi quadro) {
     return resultadoDesenquadramento;
 }
 
-void CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
+int CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
     // Armazena o bit de paridade recebido
     int bitParidadePar = quadro.back();
     quadro.pop_back();
@@ -88,14 +88,17 @@ void CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
     int contador1 = count(quadro.begin(), quadro.end(), 1);
 
     // Compara o valor recebido com o valor calculado
+    int erro = 0;
     if (contador1 % 2 == bitParidadePar) {
         cout << "Nenhum erro detectado" << endl;
     } else {
+        erro = 1;
         cout << "Erro detectado" << endl;
     }
+    return erro;
 }
 
-void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
+int CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
     vi polinomioGerador{1,1,0,1};
     vi resto = quadro;
     vi resultado;
@@ -123,14 +126,17 @@ void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
     int contador1 = count(resto.begin(), resto.end(), 1);
 
     // Verifica a quantidade de bits 1
+    int erro = 0;
     if (contador1 == 0) {
         cout << "Nenhum erro detectado" << endl;
     } else {
+        erro = 1;
         cout << "Erro detectado" << endl;
     }
+    return erro;
 }
 
-void CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
+int CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
     int tamanhoDoQuadro = quadro.size();
 
     // Inserindo um bit 0 no começo, pois a primeira posição do bit de redundância é 1 (2^0)
@@ -169,6 +175,7 @@ void CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
 
     // Removendo o bit 0 do começo
     quadro.erase(quadro.begin());
+    return erro;
 }
 
 void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
