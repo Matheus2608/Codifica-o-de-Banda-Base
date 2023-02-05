@@ -1,4 +1,6 @@
 #include "CamadaEnlace.hpp"
+#include "../aplicacao-receptora/Aplicacao.hpp"
+#include "../constantes.cpp"
 
 bool are_vectors_equal(const std::vector<int>& v1, const std::vector<int>& v2) {
     if (v1.size() != v2.size()) {
@@ -77,4 +79,24 @@ vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi quadro) {
     }
 
     return resultadoDesenquadramento;
+}
+
+void CamadaEnlaceDadosReceptoraEnquadramento(vi quadro) {
+    cout << "Desenquadrando pacote ..." << endl;
+    vi pacoteDesenquadrado;
+
+    switch (TIPO_DE_ENQUADRAMENTO) {
+    case 0:
+        pacoteDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(quadro);
+        break;
+
+    case 1:
+        pacoteDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(quadro);
+        break;
+    }
+
+    cout << "Resultado do desenquadramento:" << endl;
+    for(int bit : pacoteDesenquadrado) cout << bit << " "; cout << endl;
+
+    CamadaDeAplicacaoReceptora(pacoteDesenquadrado);
 }

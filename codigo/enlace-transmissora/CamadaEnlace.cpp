@@ -76,7 +76,7 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     return resultadoEnquadramento;
 }
 
-void CamadaEnlaceDadosTransmissora(vi quadro) {
+void CamadaEnlaceDadosTransmissoraEnquadramento(vi quadro) {
     cout << "Enquadrado pacote ..." << endl;
     vi pacoteEnquadrado;
 
@@ -84,7 +84,7 @@ void CamadaEnlaceDadosTransmissora(vi quadro) {
     case 0:
         pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
         break;
-    
+
     case 1:
         pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
         break;

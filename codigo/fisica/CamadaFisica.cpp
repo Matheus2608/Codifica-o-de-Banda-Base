@@ -1,5 +1,5 @@
 #include "CamadaFisica.hpp"
-#include "../aplicacao-receptora/Aplicacao.hpp"
+#include "../enlace-receptora/CamadaEnlace.hpp"
 #include "../constantes.cpp"
 
 vi inicializadorDeClock(int tamanhoQuadro) {
@@ -65,7 +65,7 @@ void CamadaFisicaReceptora(vi quadro) {
     cout << "trem de bits decodificado:" << endl;
     for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
-    CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
+    CamadaEnlaceDadosReceptoraEnquadramento(fluxoBrutoDeBits);
 }
 
 // ---------------------------------------------------------- ATENCAO --------------------------------------------------------------------------------------
