@@ -7,13 +7,13 @@ TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaractere
     vi expected_output = {0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1};
     int tamMaxQuadro = 2;
 
-    REQUIRE(expected_output == CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input, tamMaxQuadro));
+    REQUIRE(expected_output == CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input));
 
     input = {0,1,1,0,0,0,0,1,0,1,0,1,1,1,0,0};
     expected_output = {0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,1,1,1,0,0};
     tamMaxQuadro = 2;
 
-    REQUIRE(expected_output == CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input, tamMaxQuadro));
+    REQUIRE(expected_output == CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input));
 }
 
 TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres com um quadro incompleto") {
@@ -21,7 +21,7 @@ TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaractere
     vi expected_output = {0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,0,1,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,1,0};
     int tamMaxQuadro = 3;
 
-    REQUIRE(expected_output == CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input, tamMaxQuadro));
+    REQUIRE(expected_output == CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input));
 
 }
 
