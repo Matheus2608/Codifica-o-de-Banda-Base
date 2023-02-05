@@ -16,7 +16,7 @@ $(OBJECT_APLICACAO_R):
 
 # Camada Enlace Transmissora
 ENLACE-T-PATH = enlace-transmissora
-TEST_ENLACE-T = $(ENLACE-T-PATH)/TestaCamadaEnlace.out
+TEST_ENLACE-T = $(ENLACE-T-PATH)/TestaCamadaEnlace
 OBJECT_ENLACE-T = $(ENLACE-T-PATH)/CamadaEnlace.o
 
 $(TEST_ENLACE-T): $(OBJECT_ENLACE-T)
