@@ -97,7 +97,10 @@ void CamadaEnlaceDadosTransmissora(vi quadro) {
 }
 
 vi CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(vi quadro){
+    // Conta a quantidade de bits 1 no quadro
     int contador1 = count(quadro.begin(), quadro.end(), 1);
+
+    //Adiciona o bit de paridade no final do quadro
     if (contador1 % 2 == 0) {
         quadro.push_back(0);
     } else {
@@ -111,10 +114,14 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi quadro){
     vi resto = quadro;
     vi resultado;
 
+    // Adiciona zeros no quadro (Quantidade de bits CRC)
     for (int i = 0; i < polinomioGerador.size() - 1; i++){
         resto.pb(0);
     }
+
+    // Loop da divisão até o resto ser menor que o polinomio gerador
     while (polinomioGerador.size() <= resto.size() and resto.size() > 0){
+        // Se o primeiro bit for 1, faz XOR com o polinomio gerador
         if (resto[0] == 1){
             resto.erase(resto.begin());
             for (int i = 0; i < polinomioGerador.size(); i++){
@@ -126,6 +133,7 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi quadro){
             resultado.pb(0);
         }
     }
+    // Adiciona os bits CRC no final do quadro
     for (int i = 0; i < resto.size(); i++){
         quadro.pb(resto[i]);
     }
@@ -168,15 +176,14 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming (vi quadro) {
         k++;
         paridade = 0;
         j = i;
-        x = i;
         min = 1;
         max = i;
         while ( j <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia){
-            for (x = j; max >= min && x <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia; min++, x++){
-                if (codigoDeHamming[x] == 1)
+            for (j = j; max >= min && j <= tamanhoDoQuadro + quantidadeDeBitsDeRedundancia; min++, j++){
+                if (codigoDeHamming[j] == 1)
                     paridade = paridade + 1;;
             }
-            j = x + i;
+            j = j + i;
             min = 1;
         }
 
