@@ -1,5 +1,7 @@
 #include "../base-template.hpp"
 #include "../constantes.cpp"
+#include "../fisica/CamadaFisica.hpp"
+
 
 vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
     bitset<8> tamMaxEmByte(QTD_MAX_BYTES_QUADRO);
@@ -60,4 +62,24 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     }
 
     return resultadoEnquadramento;
+}
+
+void CamadaEnlaceDadosTransmissora(vi quadro) {
+    cout << "Enquadrado pacote ..." << endl;
+    vi pacoteEnquadrado;
+
+    switch (TIPO_DE_ENQUADRAMENTO) {
+    case 0:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
+        break;
+    
+    case 1:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
+        break;
+    }
+
+    cout << "Resultado do enquadramento:" << endl;
+    for(int bit : pacoteEnquadrado) cout << bit << " "; cout << endl;
+
+    CamadaFisicaTransmissora(pacoteEnquadrado);
 }
