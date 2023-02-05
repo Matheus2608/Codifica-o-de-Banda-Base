@@ -78,3 +78,53 @@ vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi quadro) {
 
     return resultadoDesenquadramento;
 }
+
+void CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
+    int bitParidadePar = quadro.back();
+    quadro.pop_back();
+    int contador1 = count(quadro.begin(), quadro.end(), 1);
+    if (contador1 % 2 == bitParidadePar) {
+        cout << "Nenhum erro detectado" << endl;
+    } else {
+        cout << "Erro detectado" << endl;
+    }
+}
+
+void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
+    vi polinomioGerador{1,1,0,1};
+    vi resto = quadro;
+    vi resultado;
+
+    while (polinomioGerador.size() <= resto.size() and resto.size() > 0){
+        if (resto[0] == 1){
+            resto.erase(resto.begin());
+            for (int i = 0; i < polinomioGerador.size(); i++){
+                resto[i] = resto[i] ^ polinomioGerador[i+1];
+            }
+            resultado.pb(1);
+        } else {
+            resto.erase(resto.begin());
+            resultado.pb(0);
+        }
+    }
+    int contador1 = count(resto.begin(), resto.end(), 1);
+    if (contador1 == 0) {
+        cout << "Nenhum erro detectado" << endl;
+    } else {
+        cout << "Erro detectado" << endl;
+    }
+}
+
+void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
+    switch(TIPO_DE_VERIFICACAO_DE_ERROS) {
+        case 0:
+            CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(quadro);
+            break;
+        case 1:
+            CamadaEnlaceDadosReceptoraControleDeErroCRC(quadro);
+            break;
+        case 2:
+            CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(quadro);
+            break;
+    }
+}
