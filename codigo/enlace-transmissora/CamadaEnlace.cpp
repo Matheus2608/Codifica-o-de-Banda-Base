@@ -1,19 +1,9 @@
 #include "../base-template.hpp"
+#include "../constantes.cpp"
 
-int tamMaxQuadro;
-
-vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
-    cout << "Escreva o tamanho máximo de um quadro: (2-255)" << endl;
-    cin >> tamMaxQuadro;
-
-    while (tamMaxQuadro < 2 or tamMaxQuadro > 255)
-    {
-        cout << "Número invalido! Digite novamente:" << endl;
-        cin >> tamMaxQuadro;
-    }
-    
-    bitset<8> tamMaxEmByte(tamMaxQuadro);
-    int tamCargaUtil = tamMaxQuadro - 1;
+vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {    
+    bitset<8> tamMaxEmByte(QTD_MAX_BYTES_QUADRO);
+    int tamCargaUtil = QTD_MAX_BYTES_QUADRO - 1;
 
     int numBytes = quadro.size() / 8;
     int numQuadrosPerfeitos = numBytes / tamCargaUtil;
