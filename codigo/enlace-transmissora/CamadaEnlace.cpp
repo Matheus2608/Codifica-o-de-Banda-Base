@@ -1,9 +1,10 @@
 #include "../base-template.hpp"
 #include "../constantes.cpp"
 
-vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {    
+vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
     bitset<8> tamMaxEmByte(QTD_MAX_BYTES_QUADRO);
     int tamCargaUtil = QTD_MAX_BYTES_QUADRO - 1;
+
 
     int numBytes = quadro.size() / 8;
     int numQuadrosPerfeitos = numBytes / tamCargaUtil;
@@ -37,7 +38,7 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
     return resultadoEnquadramento;
 }
 
-vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro, int tamMaxQuadro) {
+vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     vi ByteDeFlag{0,0,0,0,1,1,1,1}, ByteEsc{1,1,1,1,0,0,0,0}, resultadoEnquadramento;
 
     int tamCargaUtil = tamMaxQuadro - 1;
