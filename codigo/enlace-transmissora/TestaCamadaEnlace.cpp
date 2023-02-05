@@ -123,6 +123,11 @@ TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaractere
 
     REQUIRE(expected_output == TestaCamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input, tamMaxQuadro));
 
+    input = {0,1,1,0,0,0,0,1,  0,1,1,0,0,0,1,0,  0,1,1,0,0,0,1,1};
+    expected_output = {0,0,0,0,0,0,1,1,  0,1,1,0,0,0,0,1,  0,1,1,0,0,0,1,0,  0,0,0,0,0,0,1,0,  0,1,1,0,0,0,1,1};
+    tamMaxQuadro = 3;
+    REQUIRE(expected_output == TestaCamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(input, tamMaxQuadro));
+
 }
 
 TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes com todos quadros completos") {
