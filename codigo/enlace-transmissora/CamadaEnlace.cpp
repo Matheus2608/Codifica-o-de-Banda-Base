@@ -2,7 +2,7 @@
 
 int tamMaxQuadro;
 
-vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro, int tamMaxQuadro) {
+vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
     // cout << "Escreva o tamanho máximo de um quadro: (2-255)" << endl;
     // cin >> tamMaxQuadro;
 
@@ -47,7 +47,7 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro, int
     return resultadoEnquadramento;
 }
 
-vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro, int tamMaxQuadro) {
+vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     vi ByteDeFlag{0,0,0,0,1,1,1,1}, ByteEsc{1,1,1,1,0,0,0,0}, resultadoEnquadramento;
 
     int tamCargaUtil = tamMaxQuadro - 1;
