@@ -1,7 +1,7 @@
 #include "CamadaFisica.hpp"
 #include "../enlace-receptora/CamadaEnlace.hpp"
 #include "../constantes.cpp"
-#include "../utils/utils.hpp"
+
 
 vi CamadaFisicaReceptoraCodificacaoBinaria(vi quadro){
     return quadro;

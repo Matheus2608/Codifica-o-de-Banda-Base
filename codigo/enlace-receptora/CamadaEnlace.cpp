@@ -1,7 +1,7 @@
 #include "CamadaEnlace.hpp"
 #include "../aplicacao-receptora/Aplicacao.hpp"
 #include "../constantes.cpp"
-#include "../utils/utils.hpp"
+
 
 
 vi CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vi quadro) {

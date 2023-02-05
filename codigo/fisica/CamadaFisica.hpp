@@ -1,6 +1,7 @@
 #ifndef SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
 #define SIMULADORCAMADAFISICA_CAMADAFISICA_HPP
 #include "../base-template.hpp"
+#include "../utils/utils.hpp"
 
 /**
  * Inicializa o clock necessário para a codificação manchester
