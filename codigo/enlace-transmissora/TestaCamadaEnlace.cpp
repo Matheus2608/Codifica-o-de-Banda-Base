@@ -62,6 +62,18 @@ vi TestaCamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro, int
         }
 
         for(int k = i*8; k < i*8 + (tamMaxQuadro * 8); k++) {
+            vi temp;
+            if(k%8==0) {
+                for(int z = k; z < k + 8; z++){
+                    temp.pb(quadro[z]);
+                }
+                if(are_vectors_equal(temp, ByteDeFlag)){
+                    for(int a = 0; a < 8; a++){
+                        resultadoEnquadramento.pb(ByteEsc[a]);
+                    }
+                }
+            }
+
             resultadoEnquadramento.pb(quadro[k]);
         }
 
@@ -140,4 +152,18 @@ TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes com
 
     REQUIRE(expected_output == TestaCamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(input, tamMaxQuadro));
 
+}
+
+TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes com um byte igual o byteFlag") {
+    vi input = {0,0,0,0,1,1,1,1};
+    vi expected_output = {0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1};
+    int tamMaxQuadro = 1;
+
+    REQUIRE(expected_output == TestaCamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(input, tamMaxQuadro));
+
+    input = {0,1,1,0,0,0,0,1,  0,0,0,0,1,1,1,1,     0,0,0,1,1,0,1,0};
+    expected_output = {0,0,0,0,1,1,1,1,  0,1,1,0,0,0,0,1,   1,1,1,1,0,0,0,0,  0,0,0,0,1,1,1,1,  0,0,0,0,1,1,1,1,  0,0,0,0,1,1,1,1,  0,0,0,1,1,0,1,0,  0,0,0,0,1,1,1,1};
+    tamMaxQuadro = 2;
+
+    REQUIRE(expected_output == TestaCamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(input, tamMaxQuadro));
 }
