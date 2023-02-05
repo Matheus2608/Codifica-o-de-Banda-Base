@@ -41,7 +41,7 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
 vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     vi ByteDeFlag{0,0,0,0,1,1,1,1}, ByteEsc{1,1,1,1,0,0,0,0}, resultadoEnquadramento;
 
-    int tamCargaUtil = tamMaxQuadro - 1;
+    int tamCargaUtil = QTD_MAX_BYTES_QUADRO - 1;
     int numBytes = quadro.size() / 8;
     int numQuadrosPerfeitos = numBytes / tamCargaUtil;
 
