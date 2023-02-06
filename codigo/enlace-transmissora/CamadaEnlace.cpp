@@ -206,7 +206,6 @@ vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
         break;
     }
 
-    cout << "Resultado da adição dos bits redundantes:" << endl;
     for(int bit : quadroControleErro) cout << bit << " "; cout << endl;
 
     CamadaEnlaceDadosTransmissoraEnquadramento(quadroControleErro);
