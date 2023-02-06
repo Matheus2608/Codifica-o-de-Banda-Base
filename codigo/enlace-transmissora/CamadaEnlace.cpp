@@ -140,7 +140,7 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi quadro){
     return quadro;
 }
 
-vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming (vi quadro) {
+vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vi quadro) {
     int tamanhoDoQuadro = quadro.size();
     int quantidadeDeBitsDeRedundancia = 0;
 

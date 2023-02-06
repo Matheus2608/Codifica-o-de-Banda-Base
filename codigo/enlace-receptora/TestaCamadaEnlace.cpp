@@ -64,36 +64,36 @@ TEST_CASE( " Testa CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes com
 
 TEST_CASE("Testa CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar") {
     vi input = {1,1,0,1,0,0,1,0};
-    int expected_output = 0;
+    vi expected_output = {1,1,0,1,0,0,1};
 
     REQUIRE(expected_output == CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(input));
 
     input = {0,1,0,1,0,0,1,0};
-    expected_output = 1;
+    expected_output = {};
 
     REQUIRE(expected_output == CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(input));
 }
 
 TEST_CASE("Testa CamadaEnlaceDadosReceptoraControleDeErroCRC") {
     vi input = {1,1,0,1,0,0,1,1,0,1};
-    int expected_output = 0;
+    vi expected_output = {1,1,0,1,0,0,1};
 
     REQUIRE(expected_output == CamadaEnlaceDadosReceptoraControleDeErroCRC(input));
 
     input = {1,1,0,1,0,0,0,1,0,1}
-    expected_output = 1;
+    expected_output = {};
 
     REQUIRE(expected_output == CamadaEnlaceDadosReceptoraControleDeErroCRC(input));
 }
 
 TEST_CASE("Testa CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming") {
     vi input = {0,1,1,0,1,0,1,1,0,0,1};
-    int expected_output = 0;
+    vi expected_output = {1,1,0,1,0,0,1};
 
     REQUIRE(expected_output == CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(input));
 
     input = {0,1,1,0,1,0,1,1,1,0,1};
-    expected_output = 1;
+    expected_output = {};
 
     REQUIRE(expected_output == CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(input));
 }
