@@ -1,7 +1,7 @@
 #include "../base-template.hpp"
 #include "../constantes.cpp"
 #include "../fisica/CamadaFisica.hpp"
-#include "../utils/utils.hpp"
+
 
 
 vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
