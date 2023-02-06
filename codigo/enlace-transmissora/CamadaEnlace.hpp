@@ -6,5 +6,9 @@
 void CamadaEnlaceDadosTransmissoraEnquadramento(vi);
 vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi);
 vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi);
+vi CamadaEnlaceDadosTransmissoraControleDeErro(vi);
+vi CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(vi);
+vi CamadaEnlaceDadosTransmissoraControleDeErroCRC(vi);
+vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vi);
 
 #endif //SIMULADORCAMADAENLACE_CAMADAENLACE_HPP
