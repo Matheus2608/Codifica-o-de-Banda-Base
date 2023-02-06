@@ -10,7 +10,7 @@ const int TIPO_DE_CODIFICACAO = 1;
 0 - Contagem de Caracteres
 1 - Inserção de Bytes
 */
-const int TIPO_DE_ENQUADRAMENTO = 0;
+const int TIPO_DE_ENQUADRAMENTO = 1;
 
 
 /*
