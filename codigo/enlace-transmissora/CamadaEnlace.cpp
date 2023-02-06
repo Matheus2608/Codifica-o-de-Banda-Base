@@ -20,7 +20,7 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vi quadro) {
         }
 
         for(int k = 0; k < tamCargaUtil * 8; k++) {
-            resultadoEnquadramento.pb(quadro[i*8+k]);
+            resultadoEnquadramento.pb(quadro[i*8*tamCargaUtil+k]);
         }
     }
 
