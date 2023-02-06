@@ -3,7 +3,6 @@
 #include "../constantes.cpp"
 
 
-
 vi CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vi quadro) {
     bool cabecalho = true;
     int i = 0, tamanhoCargaUtil;
@@ -182,6 +181,8 @@ void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
             CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(quadro);
             break;
     }
+
+    CamadaDeAplicacaoReceptora(quadro);
 }
 
 void CamadaEnlaceDadosReceptoraEnquadramento(vi quadro) {
@@ -201,5 +202,5 @@ void CamadaEnlaceDadosReceptoraEnquadramento(vi quadro) {
     cout << "Resultado do desenquadramento:" << endl;
     for(int bit : pacoteDesenquadrado) cout << bit << " "; cout << endl;
 
-    CamadaDeAplicacaoReceptora(pacoteDesenquadrado);
+    CamadaEnlaceDadosReceptoraControleDeErro(pacoteDesenquadrado);
 }

@@ -65,26 +65,6 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
     return resultadoEnquadramento;
 }
 
-void CamadaEnlaceDadosTransmissoraEnquadramento(vi quadro) {
-    cout << "Enquadrado pacote ..." << endl;
-    vi pacoteEnquadrado;
-
-    switch (TIPO_DE_ENQUADRAMENTO) {
-    case 0:
-        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
-        break;
-
-    case 1:
-        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
-        break;
-    }
-
-    cout << "Resultado do enquadramento:" << endl;
-    for(int bit : pacoteEnquadrado) cout << bit << " "; cout << endl;
-
-    CamadaFisicaTransmissora(pacoteEnquadrado);
-}
-
 vi CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(vi quadro){
     // Conta a quantidade de bits 1 no quadro
     int contador1 = count(quadro.begin(), quadro.end(), 1);
@@ -189,7 +169,28 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming (vi quadro) {
     return codigoDeHamming;
 }
 
+void CamadaEnlaceDadosTransmissoraEnquadramento(vi quadro) {
+    cout << "Enquadrado pacote ..." << endl;
+    vi pacoteEnquadrado;
+
+    switch (TIPO_DE_ENQUADRAMENTO) {
+    case 0:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
+        break;
+
+    case 1:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
+        break;
+    }
+
+    cout << "Resultado do enquadramento:" << endl;
+    for(int bit : pacoteEnquadrado) cout << bit << " "; cout << endl;
+
+    CamadaFisicaTransmissora(pacoteEnquadrado);
+}
+
 vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
+    cout << "Adicionando bits de detecção de erro..." << endl;
     vi quadroControleErro;
     switch (TIPO_DE_VERIFICACAO_DE_ERROS) {
     case 0:
@@ -204,5 +205,9 @@ vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
         quadroControleErro = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
         break;
     }
-    return quadroControleErro;
+
+    cout << "Resultado da adição dos bits redundantes:" << endl;
+    for(int bit : quadroControleErro) cout << bit << " "; cout << endl;
+
+    CamadaEnlaceDadosTransmissoraEnquadramento(quadroControleErro);
 }

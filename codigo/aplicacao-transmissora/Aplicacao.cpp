@@ -27,5 +27,5 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
     for(int bit : quadro) cout << bit << " "; cout << endl;
 
     // Chama a proxima camada
-    CamadaEnlaceDadosTransmissoraEnquadramento(quadro);
+    CamadaEnlaceDadosTransmissoraControleDeErro(quadro);
 }
