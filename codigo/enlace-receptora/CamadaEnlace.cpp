@@ -2,43 +2,22 @@
 #include "../aplicacao-receptora/Aplicacao.hpp"
 #include "../constantes.cpp"
 
-
 vi CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vi quadro) {
-    bool cabecalho = true;
-    int i = 0, tamanhoCargaUtil;
+    bitset<8> bitsetCabecalho;
     vi resultadoDesenquadramento;
 
-    while(i < quadro.size()){
-        if(cabecalho){
-            // cout << "estou no if" << endl;
-            // cout << "i = " << i << endl;
+    for(int i = 0; i < 8; i++){
+        bitsetCabecalho[7 - i] = quadro[i];
+    }
 
-            bitset<8> bitsetCabecalho;
-            for(int j = i; j < i + 8; j++){
-                bitsetCabecalho[7-(j%8)] = quadro[j];
-                //cout << " bitsetCabecalho[" << 7-(j%8) << "] = " << bitsetCabecalho[7-j] << endl;
-            }
+    int numBits = (int) (bitsetCabecalho.to_ullong());
 
-            tamanhoCargaUtil = (int) (bitsetCabecalho.to_ullong() - 1);
-            cabecalho = false;
-            // cout << "tamanhoCargaUtil = " << tamanhoCargaUtil << endl;
-            i += 8;
-        }
-
-        else{
-            // cout << "estou no else" << endl;
-            // cout << "i = " << i << endl;
-
-            for(int k = i; k < i + (8 * tamanhoCargaUtil); k++){
-                resultadoDesenquadramento.pb(quadro[k]);
-            }
-
-            i += (8 * tamanhoCargaUtil);
-            cabecalho = true;
-        }
+    for(int j = 8; j < 8 + numBits; j++){
+        resultadoDesenquadramento.pb(quadro[j]);
     }
 
     return resultadoDesenquadramento;
+
 }
 
 vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi quadro) {
