@@ -3,14 +3,14 @@
 1 - Codificação Manchester
 2 - Codificação Biplar
 */
-const int TIPO_DE_CODIFICACAO = 1;
+const int TIPO_DE_CODIFICACAO = 0;
 
 
 /*
 0 - Contagem de Caracteres
 1 - Inserção de Bytes
 */
-const int TIPO_DE_ENQUADRAMENTO = 1;
+const int TIPO_DE_ENQUADRAMENTO = 0;
 
 
 /*
@@ -23,10 +23,10 @@ const int QTD_MAX_BYTES_QUADRO = 2;
  * 1 - CRC
  * 2 - Código de Hamming
  */
-const int TIPO_DE_VERIFICACAO_DE_ERROS = 1;
+const int TIPO_DE_VERIFICACAO_DE_ERROS = 0;
 
 
 /*
     Probabilidade de erro - varia de 0 a 100
 */
-const int PROBABILIDADE_ERRO = 5;
+const int PROBABILIDADE_ERRO = 0;
