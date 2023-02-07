@@ -49,7 +49,7 @@ vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi quadro) {
     return resultadoDesenquadramento;
 }
 
-bool CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
+void CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
     // Armazena o bit de paridade recebido
     int bitParidadePar = quadro.back();
     quadro.pop_back();
@@ -65,10 +65,9 @@ bool CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
         erro = true;
         cout << "Erro detectado" << endl;
     }
-    return erro;
 }
 
-int CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
+void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
     vi polinomioGerador{1,1,0,1};
     vi resto = quadro;
     vi resultado;
@@ -103,7 +102,6 @@ int CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
         erro = 1;
         cout << "Erro detectado" << endl;
     }
-    return erro;
 }
 
 int CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
@@ -157,6 +155,9 @@ void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
             break;
         case 1:
             CamadaEnlaceDadosReceptoraControleDeErroCRC(quadro);
+            quadro.pop_back();
+            quadro.pop_back();
+            quadro.pop_back();
             break;
         case 2:
             CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(quadro);

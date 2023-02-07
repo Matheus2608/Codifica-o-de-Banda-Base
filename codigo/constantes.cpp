@@ -23,4 +23,4 @@ const int QTD_MAX_BYTES_QUADRO = 3;
  * 1 - CRC
  * 2 - Código de Hamming
  */
-const int TIPO_DE_VERIFICACAO_DE_ERROS = 0;
+const int TIPO_DE_VERIFICACAO_DE_ERROS = 1;
