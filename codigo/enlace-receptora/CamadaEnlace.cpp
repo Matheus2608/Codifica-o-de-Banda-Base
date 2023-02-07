@@ -49,7 +49,7 @@ vi CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vi quadro) {
     return resultadoDesenquadramento;
 }
 
-int CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
+bool CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
     // Armazena o bit de paridade recebido
     int bitParidadePar = quadro.back();
     quadro.pop_back();
@@ -58,11 +58,11 @@ int CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
     int contador1 = count(quadro.begin(), quadro.end(), 1);
 
     // Compara o valor recebido com o valor calculado
-    int erro = 0;
+    bool erro = false;
     if (contador1 % 2 == bitParidadePar) {
         cout << "Nenhum erro detectado" << endl;
     } else {
-        erro = 1;
+        erro = true;
         cout << "Erro detectado" << endl;
     }
     return erro;
@@ -149,9 +149,11 @@ int CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
 }
 
 void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
+    
     switch(TIPO_DE_VERIFICACAO_DE_ERROS) {
         case 0:
             CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(quadro);
+            quadro.pop_back();
             break;
         case 1:
             CamadaEnlaceDadosReceptoraControleDeErroCRC(quadro);
@@ -160,6 +162,9 @@ void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
             CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(quadro);
             break;
     }
+
+    cout << "Resultado do Controle de Erro:" << endl;
+    for(int bit : quadro) cout << bit << " "; cout << endl;
 
     CamadaDeAplicacaoReceptora(quadro);
 }
