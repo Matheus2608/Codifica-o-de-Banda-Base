@@ -63,7 +63,9 @@ void CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vi quadro) {
         cout << "Nenhum erro detectado" << endl;
     } else {
         erro = true;
-        cout << "Erro detectado" << endl;
+        cout << "\n------------------------------" << endl;
+        cout << "           ERRO DETECTADO !!" << endl;
+        cout << "------------------------------\n" << endl;
     }
 }
 
@@ -100,7 +102,9 @@ void CamadaEnlaceDadosReceptoraControleDeErroCRC(vi quadro) {
         cout << "Nenhum erro detectado" << endl;
     } else {
         erro = 1;
-        cout << "Erro detectado" << endl;
+        cout << "\n------------------------------" << endl;
+        cout << "       ERRO DETECTADO !!" << endl;
+        cout << "------------------------------\n" << endl;
     }
 }
 

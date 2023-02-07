@@ -109,11 +109,15 @@ void MeioDeComunicacao(vi fluxoBrutoDeBits) {
     fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
     int i = 0;
     while(fluxoBrutoDeBitsPontoB.size() != fluxoBrutoDeBitsPontoA.size()) {
-        fluxoBrutoDeBitsPontoB.pb(fluxoBrutoDeBitsPontoA[i]);
+        if (rand()%100 > PROBABILIDADE_ERRO-1)
+            fluxoBrutoDeBitsPontoB.pb(fluxoBrutoDeBitsPontoA[i]);
+        else 
+            fluxoBrutoDeBitsPontoB.pb(fluxoBrutoDeBitsPontoA[i]==1? 0:1);
         i++;
     }
 
-    // for(int bit : fluxoBrutoDeBitsPontoB) cout << bit << " "; cout << endl;
+    
+    for(int bit : fluxoBrutoDeBitsPontoB) cout << bit << " "; cout << endl;
     CamadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
 
 }
