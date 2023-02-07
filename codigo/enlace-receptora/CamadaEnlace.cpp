@@ -146,6 +146,26 @@ int CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(vi quadro){
     return erro;
 }
 
+void CamadaEnlaceDadosReceptoraEnquadramento(vi quadro) {
+    cout << "Desenquadrando pacote ..." << endl;
+    vi pacoteDesenquadrado;
+
+    switch (TIPO_DE_ENQUADRAMENTO) {
+    case 0:
+        pacoteDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(quadro);
+        break;
+
+    case 1:
+        pacoteDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(quadro);
+        break;
+    }
+
+    cout << "Resultado do desenquadramento:" << endl;
+    for(int bit : pacoteDesenquadrado) cout << bit << " "; cout << endl;
+
+    CamadaDeAplicacaoReceptora(pacoteDesenquadrado);
+}
+
 void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
     
     switch(TIPO_DE_VERIFICACAO_DE_ERROS) {
@@ -167,25 +187,6 @@ void CamadaEnlaceDadosReceptoraControleDeErro(vi quadro) {
     cout << "Resultado do Controle de Erro:" << endl;
     for(int bit : quadro) cout << bit << " "; cout << endl;
 
-    CamadaDeAplicacaoReceptora(quadro);
+    CamadaEnlaceDadosReceptoraEnquadramento(quadro);
 }
 
-void CamadaEnlaceDadosReceptoraEnquadramento(vi quadro) {
-    cout << "Desenquadrando pacote ..." << endl;
-    vi pacoteDesenquadrado;
-
-    switch (TIPO_DE_ENQUADRAMENTO) {
-    case 0:
-        pacoteDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(quadro);
-        break;
-
-    case 1:
-        pacoteDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(quadro);
-        break;
-    }
-
-    cout << "Resultado do desenquadramento:" << endl;
-    for(int bit : pacoteDesenquadrado) cout << bit << " "; cout << endl;
-
-    CamadaEnlaceDadosReceptoraControleDeErro(pacoteDesenquadrado);
-}

@@ -10,7 +10,7 @@ const int TIPO_DE_CODIFICACAO = 1;
 0 - Contagem de Caracteres
 1 - Inserção de Bytes
 */
-const int TIPO_DE_ENQUADRAMENTO = 0;
+const int TIPO_DE_ENQUADRAMENTO = 1;
 
 
 /*
@@ -23,4 +23,4 @@ const int QTD_MAX_BYTES_QUADRO = 3;
  * 1 - CRC
  * 2 - Código de Hamming
  */
-const int TIPO_DE_VERIFICACAO_DE_ERROS = 1;
+const int TIPO_DE_VERIFICACAO_DE_ERROS = 0;

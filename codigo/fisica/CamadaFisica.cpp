@@ -51,7 +51,7 @@ void CamadaFisicaReceptora(vi quadro) {
     cout << "trem de bits decodificado:" << endl;
     for(int bit : fluxoBrutoDeBits) cout << bit << " "; cout << endl;
 
-    CamadaEnlaceDadosReceptoraEnquadramento(fluxoBrutoDeBits);
+    CamadaEnlaceDadosReceptoraControleDeErro(fluxoBrutoDeBits);
 }
 
 // ---------------------------------------------------------- ATENCAO --------------------------------------------------------------------------------------

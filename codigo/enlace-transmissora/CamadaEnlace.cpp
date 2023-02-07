@@ -143,26 +143,6 @@ vi CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming (vi quadro) {
     return codigoDeHamming;
 }
 
-void CamadaEnlaceDadosTransmissoraEnquadramento(vi quadro) {
-    cout << "Enquadrado pacote ..." << endl;
-    vi pacoteEnquadrado;
-
-    switch (TIPO_DE_ENQUADRAMENTO) {
-    case 0:
-        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
-        break;
-
-    case 1:
-        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
-        break;
-    }
-
-    cout << "Resultado do enquadramento:" << endl;
-    for(int bit : pacoteEnquadrado) cout << bit << " "; cout << endl;
-
-    CamadaFisicaTransmissora(pacoteEnquadrado);
-}
-
 vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
     cout << "Adicionando bits de detecção de erro..." << endl;
     vi quadroControleErro;
@@ -182,5 +162,25 @@ vi CamadaEnlaceDadosTransmissoraControleDeErro(vi quadro){
 
     for(int bit : quadroControleErro) cout << bit << " "; cout << endl;
 
-    CamadaEnlaceDadosTransmissoraEnquadramento(quadroControleErro);
+    CamadaFisicaTransmissora(quadroControleErro);
+}
+
+void CamadaEnlaceDadosTransmissoraEnquadramento(vi quadro) {
+    cout << "Enquadrado pacote ..." << endl;
+    vi pacoteEnquadrado;
+
+    switch (TIPO_DE_ENQUADRAMENTO) {
+    case 0:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
+        break;
+
+    case 1:
+        pacoteEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
+        break;
+    }
+
+    cout << "Resultado do enquadramento:" << endl;
+    for(int bit : pacoteEnquadrado) cout << bit << " "; cout << endl;
+
+    CamadaEnlaceDadosTransmissoraControleDeErro(pacoteEnquadrado);
 }
