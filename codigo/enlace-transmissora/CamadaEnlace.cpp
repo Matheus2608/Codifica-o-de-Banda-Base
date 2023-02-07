@@ -35,7 +35,20 @@ vi CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vi quadro) {
             resultadoEnquadramento.pb(ByteDeFlag[j]);
         }
     }
+    int numBytesFaltantes = numBytes % tamCargaUtil;
+    if(numBytesFaltantes) {
+        for(int j = 0; j < 8; j++){
+            resultadoEnquadramento.pb(ByteDeFlag[j]);
+        }
 
+        for(int k = 0; k < numBytesFaltantes*8; k++) {
+            resultadoEnquadramento.pb(quadro[numQuadrosPerfeitos*8*tamCargaUtil+k]);
+        }
+
+        for(int j = 0; j < 8; j++){
+            resultadoEnquadramento.pb(ByteDeFlag[j]);
+        }
+    }
     return resultadoEnquadramento;
 }
 
